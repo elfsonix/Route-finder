@@ -1,8 +1,20 @@
 # from typing import List
 import math
+
 # Initiate
-mass = 20.5  # mass in kilograms
+m = 20.5  # mass in kilograms
 current_location = {'x': 0, 'y': 0, 'z': 0}
+g = 3.71  # gravitational acceleration in m/s^2
+init_fuel_need = 10 # fuel needed to start moving
+
+
+# Fuel usage function
+def fuel_usage(mass, grav_acc, height, distance):
+    if d == 0:
+        return 0
+    slope = (math.atan(height / distance) * 50) / math.pi
+    return mass * slope * grav_acc * distance
+
 
 # Read file of points
 plik = open('points.txt')
@@ -13,13 +25,13 @@ for linia in plik:
     point_list.append(dictionary)
 print(point_list)
 plik.close()
+# print(point_list[0]['y'])  # Print y coordinate of 0. point
 
 # Calculate cost for each point
 cost = []
 for elem in point_list:
-    distance = math.sqrt((current_location['x'] - elem['x'])**2 + (current_location['y'] - elem['y'])**2)
-    height = current_location['z'] - elem['z']
-    point_cost = distance  # unfinished
+    d = math.sqrt((current_location['x'] - elem['x']) ** 2 + (current_location['y'] - elem['y']) ** 2)
+    h = elem['z'] - current_location['z']
+    point_cost = init_fuel_need + fuel_usage(m, g, h, d)
     cost.append(point_cost)
 print(cost)
-# print(point_list[0]['y'])  # Print y coordinate of 0. point
