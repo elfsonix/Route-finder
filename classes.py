@@ -11,7 +11,10 @@ class Population:
     def __init__(self, size: int, t: int, points:list) -> None:
         self.size = size
         self.t = t
-        self.solutions = []  # napisać inicjalizację dla t=0
+        # wstepna inicjalizacja dla t=0
+        self.solutions = [random.randrange(1, len(points), 1) for i in range(len(points))]
+        # korzystam z  random.randrange(start, stop[, step])
+
         
     def __init__(self, previous_population: Population) -> None:
         self.size = previous_population.size
