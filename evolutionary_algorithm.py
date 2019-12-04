@@ -35,7 +35,7 @@ class Evolutionary_algorithm(abc):
                 bestSpecimen = specimen
         return bestSpecimen
 
-    def evolutionary_algorithm(self, population_size):
+    def run(self, population_size):
         t: int = 0 # zmienić na zliczanie wywołania f oceny
         P = self.initiate(population_size)
         while (not self.stop(P, t)): # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
@@ -44,4 +44,3 @@ class Evolutionary_algorithm(abc):
             # czy musi być ocena tutaj?
             #ocena tylko tam gdzie trzeba
         return (P)
-
