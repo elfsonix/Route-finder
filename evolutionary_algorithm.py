@@ -1,4 +1,4 @@
-from classes import *
+from Map import *
 import abc
 
 class Evolutionary_algorithm(abc):
