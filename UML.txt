@@ -1,0 +1,53 @@
+@startuml
+class Rover {
++current_weight: float
++current_location: int
++__init__(self, start_weight, start_location)
+
+
+}
+
+class Map {
++points_matrix: matrix
++__init__(self, file)]
+}
+
+
+class Solution {
++route : list
++__init__(self, route)
++rate(self)
+-calculate_punishment(self)
+-calculate_goal(self)
++get_length(self)
+}
+
+Solution --o Rover: uses
+Solution --o Map: uses
+
+class Population{
++size: int
++t: int
++points: list
++solutions: list
++__init__(self, size, t, points, start_point)
++__init__(self, previous_population: Population)
++get_size(self)
+}
+
+Solution --* Population: is part of
+
+
+object fuel_usage{
+mass: float
+first_point: dict
+second_point: dict
+grav_acc: float
+calc_fuel_usage(mass: float, first_point: dict, second_point: dict, grav_acc: float): float
+}
+
+object cross 
+object mutate
+object select
+object genetic_algorythm
+@enduml
