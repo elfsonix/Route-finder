@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33e626a9-2978-427a-bfd0-4ffe14d6e93b" name="Default" comment="Zmiana nazwy metody wykonania algorytmu na run">
-      <change beforePath="$PROJECT_DIR$/.idea/Route-finder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Route-finder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="33e626a9-2978-427a-bfd0-4ffe14d6e93b" name="Default" comment="Implementacja metod mutacji i crossowania">
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Population.py" beforeDir="false" afterPath="$PROJECT_DIR$/Population.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evolutionary_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/evolutionary_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solution.py" beforeDir="false" afterPath="$PROJECT_DIR$/solution.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1UWYxOToR3BRexhlcemlIgQiFUg" />
   <component name="ProjectViewState">
@@ -85,7 +88,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1573578039315</updated>
-      <workItem from="1575474151873" duration="2838000" />
+      <workItem from="1575474151873" duration="4020000" />
+      <workItem from="1575625598324" duration="4603000" />
     </task>
     <task id="LOCAL-00001" summary="Zmiana nazwy metody wykonania algorytmu na run">
       <created>1575474592128</created>
@@ -94,21 +98,44 @@
       <option name="project" value="LOCAL" />
       <updated>1575474592128</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implementacja metod mutacji i crossowania">
+      <created>1575477052993</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575477052993</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Zmiana nazwy metody wykonania algorytmu na run" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zmiana nazwy metody wykonania algorytmu na run" />
+    <MESSAGE value="Implementacja metod mutacji i crossowania" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementacja metod mutacji i crossowania" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="615" y="114" key="CommitChangelistDialog2" timestamp="1575474590998">
+    <state x="615" y="114" key="CommitChangelistDialog2" timestamp="1575477052191">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="615" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575474590998" />
+    <state x="615" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575477052191" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1575644300179">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575644300179" />
     <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1575475790804">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -117,14 +144,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575475816662" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1575474597148">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1575477057009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575474597148" />
-    <state x="661" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1575474210429">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575477057009" />
+    <state x="661" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1575625675425">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="661" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575474210429" />
+    <state x="661" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575625675425" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575644300019">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575644300019" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

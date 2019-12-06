@@ -3,6 +3,7 @@ from rover import Rover
 class Solution:
     def __init__(self, points: list) ->None:
         self.route = points
+        self.rating = self.rate()
 
     def get_length(self):
         return len(self.route)

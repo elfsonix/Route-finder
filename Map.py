@@ -28,3 +28,6 @@ class Points: #cała klasa do edycji
 
     def get_points_id(self) -> list:
         return self.points
+
+    def get_max_points_num(self):
+        return len(self.points)
