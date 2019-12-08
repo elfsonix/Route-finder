@@ -3,6 +3,7 @@ import operator
 from solution import Solution
 import Map
 
+
 class Population:
     def __init__(self, t: int, points: list, size: int = 30) -> None:
         self.size = size
@@ -18,7 +19,7 @@ class Population:
         self.size = previous_population.size
         self.t = previous_population.t + 1
         self.current_generation = []  # napisać funkcję tworzącą nową populację ze starej
-        #TODO czy to robimy tutaj czy w klasie EA?
+        # TODO czy to robimy tutaj czy w klasie EA?
 
     def get_size(self) -> int:
         return self.size
@@ -48,8 +49,8 @@ class Population:
 
         return[child_1, child_2]
 
-    def modify(self, parents: list) -> list: # TODO coś trzeba ogarnąć z maksymalnym id wierzcholka grafu
-        parents = random.shuffle(parents) # pomieszanie wybranych rodziców
+    def modify(self, parents: list) -> list:  # TODO coś trzeba ogarnąć z maksymalnym id wierzcholka grafu
+        parents = random.shuffle(parents)  # pomieszanie wybranych rodziców
         children = []
         for specimen in parents:
             parents = self.mutate(specimen, )  # mutowanie
@@ -67,8 +68,8 @@ class Population:
 
 
 
-        #TODO wybranie rodzicow
+        # TODO wybranie rodzicow
         pass
 
-    def next_generation(self):        #TODO
+    def next_generation(self):        # TODO
         pass

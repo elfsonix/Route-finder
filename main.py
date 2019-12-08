@@ -6,5 +6,5 @@ import rover
 import solution
 
 if __name__ == '__main__':
-    #TODO wywołanie algorytmu
+    # TODO wywołanie algorytmu
     pass

@@ -15,7 +15,7 @@ class Map:
         return self.map[x][y]
 
 
-class Points: #cała klasa do edycji
+class Points:  # cała klasa do edycji
     def __init__(self, file: str) -> None:
         plik = open(file)
         point_list = []

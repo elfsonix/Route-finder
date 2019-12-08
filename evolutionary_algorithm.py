@@ -4,7 +4,8 @@ import abc
 from solution import Solution
 import random
 
-class Evolutionary_algorithm(abc):
+
+class EvolutionaryAlgorithm(abc):
     def initiate(self, population_size: int) -> Population:
         pass
         # !!!!!! Jak wybrać rodziców? Jak dobrać rodziców w pary? Najpierw mutacja czy najpierw krzyzowanie?
@@ -14,21 +15,21 @@ class Evolutionary_algorithm(abc):
         #TODO warunek stopu
         pass
 
-    def selectSpecimen(self, population: list): #ja bym to wypieprzyla TODO
+    def select_specimen(self, population: list): #ja bym to wypieprzyla TODO
         rating = 0
         best_specimen = population[0]
         for specimen in population:
-            if specimen.rating>rating:
+            if specimen.rating > rating:
                 rating = specimen.rating
                 best_specimen = specimen
         return best_specimen
 
     def run(self, population_size):
-        t: int = 0 # zmienić na zliczanie wywołania f oceny
+        t: int = 0  # zmienić na zliczanie wywołania f oceny
         P = self.initiate(population_size)
-        while (not self.stop(P, t)): # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
+        while not self.stop(P, t):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
             t = t + 1
-            P = self.modify(self.selectParents(P))
+            P = self.modify(self.select_parents(P))
             # czy musi być ocena tutaj?
-            #ocena tylko tam gdzie trzeba
-        return (P)
+            # ocena tylko tam gdzie trzeba
+        return P
