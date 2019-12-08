@@ -21,7 +21,8 @@ class Points: #cała klasa do edycji
         point_list = []
         for linia in plik:
             linia = linia.split()
-            dictionary: dict = {'x': int(linia[0]), 'y': int(linia[1]), 'z': int(linia[2])}
+            # dodany profit jako czwarta cecha punktu
+            dictionary: dict = {'x': int(linia[0]), 'y': int(linia[1]), 'z': int(linia[2]), 'profit': int(linia[3])}
             point_list.append(dictionary)
         self.points = point_list
         plik.close()
