@@ -13,7 +13,7 @@ class Solution:
         return self.route
 
     def goal(self) -> float:
-        return Rover.go(self)
+        return Rover.go(self.route)    # * ? SPRAWDZIC
 
     def punishment(self) -> float:
         pass
