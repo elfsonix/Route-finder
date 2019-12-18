@@ -5,7 +5,7 @@ import math
 m = 20.5  # mass in kilograms
 current_location = {'x': 0, 'y': 0, 'z': 0}
 g = 3.71  # gravitational acceleration in m/s^2
-init_fuel_need = 10 # fuel needed to start moving
+init_fuel_need = 10  # fuel needed to start moving
 
 
 # Fuel usage function
