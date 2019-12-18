@@ -1,35 +1,22 @@
-import Map
-import Population
+from map import Map
+from population import Population
 import abc
-from solution import Solution
+import configuration
+from specimen import Specimen
 import random
 
 
-class EvolutionaryAlgorithm(abc):
-    def initiate(self, population_size: int) -> Population:
-        pass
-        # !!!!!! Jak wybrać rodziców? Jak dobrać rodziców w pary? Najpierw mutacja czy najpierw krzyzowanie?
-        # Każdy z każdym, albo losowy z losowym
+def stop(population, gen_num):
+    # TODO warunek stopu
+    pass
 
-    def stop(self, P, t):
-        #TODO warunek stopu
-        pass
 
-    def select_specimen(self, population: list): #ja bym to wypieprzyla TODO
-        rating = 0
-        best_specimen = population[0]
-        for specimen in population:
-            if specimen.rating > rating:
-                rating = specimen.rating
-                best_specimen = specimen
-        return best_specimen
-
-    def run(self, population_size):
-        t: int = 0  # zmienić na zliczanie wywołania f oceny
-        P = self.initiate(population_size)
-        while not self.stop(P, t):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
-            t = t + 1
-            P = self.modify(self.select_parents(P))
-            # czy musi być ocena tutaj?
-            # ocena tylko tam gdzie trzeba
-        return P
+def run(_map: Map):
+    gen_num: int = 0  # zmienić na zliczanie wywołania f oceny
+    generation = Population(gen_num, _map.max_point)
+    while not stop(generation, gen_num):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
+        gen_num = gen_num + 1
+        generation.next_generation()
+        # czy musi być ocena tutaj?
+        # ocena tylko tam gdzie trzeba
+    return generation

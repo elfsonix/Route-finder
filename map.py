@@ -1,4 +1,5 @@
 import math
+import cost_calculator
 
 
 class Map:
@@ -11,6 +12,9 @@ class Map:
             dictionary: dict = {'x': int(line[0]), 'y': int(line[1]), 'z': int(line[2]), 'profit': int(line[3])}
             self.map.append(dictionary)
         f.close()
+        self.max_point = len(self.map)
+
+        self.cost_matrix = cost_calculator.calc_cost_matrix(self.map)
 
     def get_z(self, point_id: int) -> int:
         return self.map[point_id]['z']
@@ -20,7 +24,3 @@ class Map:
 
     def get_profit(self, point_id: int):
         return self.map[point_id]['profit']
-
-    def get_max_point(self):
-        return len(self.map)
-

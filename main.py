@@ -1,15 +1,16 @@
 import cost_calculator
 import evolutionary_algorithm
-import Map
-import Population
+import map
+import population
 import rover
-import solution
+import specimen
 import configuration
 
 
 def main():
-    alg_config = configuration.Configuration()
-    final_population = evolutionary_algorithm.EvolutionaryAlgorithm.run(alg_config.config["population_size"])
+    configuration.load_config_file()
+    alg_map = map.Map()
+    final_population = evolutionary_algorithm.run(alg_map)
     pass
 
 
