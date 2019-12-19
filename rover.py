@@ -1,6 +1,8 @@
 # from specimen import Specimen
 import math
 import configuration
+import cost_calculator
+from map import Map
 
 
 class Rover:
@@ -10,12 +12,11 @@ class Rover:
         self.current_location = start_location
 
     # zwraca koszt przebytej trasy w danym Solution, tj. osobniku
-    def go(self, route):
+    def go(self, route: list, map: Map):
+        previous_point = 0
         cost = 0
-        for i in (1, len(route)):
-            pass
-            # odleglosc w linii prostej miedzy punktami, dodac wspolczynnik do sumy?
-            # cost += math.sqrt(((route.get_item()[i]['x']-route.get_item()[i-1]['x'])**2) +
-            #                   ((route.get_item()[i]['y']-route.get_item()[i-1]['y'])**2) +
-            #                   ((route.get_item()[i]['z']-route.get_item()[i-1]['z'])**2))
+        for elem in route:
+            cost += cost_calculator.calc_fuel_usage(self.current_weight, previous_point, elem, map.cost_matrix)
+            previous_point = elem
+        cost += cost_calculator.calc_fuel_usage(self.current_weight, 0, map.cost_matrix)
         return cost

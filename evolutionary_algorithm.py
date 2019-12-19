@@ -6,16 +6,18 @@ from specimen import Specimen
 import random
 
 
-def stop(population, gen_num):
-    # TODO warunek stopu
-    pass
+def stop(population):
+    if population.gen_num > configuration.values["max_generation"]:
+        return 1
+    elif population.select_best_specimen().rating > configuration.values["target_value"]:
+        return 1
+    else:
+        return 0
 
 
 def run(_map: Map):
-    gen_num: int = 0  # zmienić na zliczanie wywołania f oceny
-    generation = Population(gen_num, _map.max_point)
-    while not stop(generation, gen_num):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
-        gen_num = gen_num + 1
+    generation = Population(_map)
+    while not stop(generation):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
         generation.next_generation()
         # czy musi być ocena tutaj?
         # ocena tylko tam gdzie trzeba
