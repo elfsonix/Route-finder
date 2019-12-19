@@ -7,6 +7,7 @@ class Specimen:
     def __init__(self, route: list) -> None:
         self.route: list = route
         self.rating = 0
+        self.is_allowed = 0
 
     def __lt__(self, other):
         return self.rating < other.rating
@@ -40,6 +41,7 @@ class Specimen:
             cost = 0
         else:
             cost = configuration.values["fuel"] - cost
+            self.is_allowed = 1
 
         # obliczenie wartości funkcji optymalizacji
         self.rating = weight - configuration.values["rover_mass"] - configuration.values["alpha"] * cost

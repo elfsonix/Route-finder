@@ -11,9 +11,16 @@ def main():
     configuration.load_config_file()
     alg_map = Map()
     final_population = evolutionary_algorithm.run(alg_map)
-    print(final_population.select_best_specimen().route)
-    print(final_population.select_best_specimen().rating)
+
+    for elem in final_population.current_generation:
+        print(elem.route, elem.rating, elem.is_allowed)
+
+    print("BEST:", final_population.select_best_specimen().route, final_population.select_best_specimen().rating)
+    print("BEST ALLOWED:", final_population.select_best_allowed_specimen().route,
+          final_population.select_best_allowed_specimen().rating)
+
     print(final_population.gen_num)
+
     pass
 
 

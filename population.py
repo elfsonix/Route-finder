@@ -17,9 +17,11 @@ class Population:
         self.map = map
 
         temp_list = []
-        for i in range(random.randrange(1, self.map.max_point, 1)):      # tworzę losowo generację początkową
-            temp_list.append(random.randrange(1, self.map.max_point, 1))
+        for j in range(0, configuration.values["population_size"]):
+            for i in range(random.randrange(1, self.map.max_point, 1)):      # tworzę losowo generację początkową
+                temp_list.append(random.randrange(1, self.map.max_point, 1))
             self.current_generation.append(Specimen(temp_list))
+            # print(temp_list)
             temp_list = []
         for i in self.current_generation:
             i.rate(self.map)
@@ -74,7 +76,15 @@ class Population:
     def select_best_specimen(self) -> Specimen:
         whole_population = self.current_generation + self.old_generation
         whole_population.sort()             # sortowanie populacji od najlepszych do najgorszych
-        return whole_population.pop(0)      # zwracam najlepszego
+        return whole_population.pop()      # zwracam najlepszego
+
+    def select_best_allowed_specimen(self):
+        whole_population = self.current_generation + self.old_generation
+        whole_population.sort()  # sortowanie populacji od najlepszych do najgorszych
+        specimen = whole_population.pop()
+        while not specimen.is_allowed:
+            specimen = whole_population.pop()
+        return specimen  # zwracam najlepszego
 
     def next_generation(self) -> None:
         new_generation: list = self.modify(self.select_best_parents())

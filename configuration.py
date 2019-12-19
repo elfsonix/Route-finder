@@ -1,5 +1,5 @@
 values: dict = {             # default algorithm parameters
-        "alpha": 1,                  # penalty function constant
+        "alpha": 2,                  # penalty function constant
         "population_size": 30,      # size of each population
         "target_value": 1000,        # target objective function value
         "g": 3.71,                  # gravitational acceleration [m/s^2]
@@ -10,7 +10,7 @@ values: dict = {             # default algorithm parameters
         "base_y": 0,
         "base_z": 0,
         "init_fuel_need": 10,       # initial fuel needed to start moving
-        "fuel": 100,                # initial fuel value
+        "fuel": 10000,                # initial fuel value
         "max_generation": 99,       # max number of generations
     }
 
