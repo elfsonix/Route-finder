@@ -33,11 +33,13 @@ class Population:
         return self.current_generation[number]
 
     def mutate(self, specimen: Specimen) -> Specimen:
+        print("pre mutation", specimen.route)
         random.seed()
         for point in specimen.route:
-            if random.randrange(0, 1) == 1:
+            if random.randrange(0, 2) == 1:
                 point = random.randrange(0, self.map.max_point)
                 # mutowanie zachodzi losowo, do ustalenia rozkład losowania
+        print("post mutation", specimen.route)
         return specimen
 
     def cross_parents(self, parent_1: Specimen, parent_2: Specimen) -> list:
@@ -57,16 +59,16 @@ class Population:
 
     def modify(self, parents: list) -> list:
         # parents = random.shuffle(parents)  # pomieszanie wybranych rodziców # TODO cos nie dziala
-        children = parents  # []
-        # for specimen in parents:
-        #     parents = self.mutate(specimen)  # mutowanie
-        # for i in range(0, len(parents)):  # krzyżowanie
-        #     parent_1 = parents.pop()
-        #     parent_2 = parents.pop()
+        children = []
+        for specimen in parents:
+            parents = self.mutate(specimen)  # mutowanie
+        # for i in range(0, len(parents)-1):  # krzyżowanie
+        #     parent_1 = parents[i]
+        #     parent_2 = parents[i+1]
         #     offspring = self.cross_parents(parent_1, parent_2)
         #     children.append(offspring.pop())
         #     children.append(offspring.pop())
-        return children
+        return parents
 
     def select_best_parents(self) -> list:
         whole_population = self.current_generation + self.old_generation
@@ -81,15 +83,18 @@ class Population:
     def select_best_allowed_specimen(self):
         whole_population = self.current_generation + self.old_generation
         whole_population.sort()  # sortowanie populacji od najlepszych do najgorszych
-        specimen = whole_population.pop()
-        while not specimen.is_allowed:
-            specimen = whole_population.pop()
-        return specimen  # zwracam najlepszego
+        allowed_specimen = []
+        for specimen in whole_population:
+            if specimen.is_allowed == 0:
+                allowed_specimen.append(specimen)
+        allowed_specimen.sort()
+        return allowed_specimen.pop()  # zwracam najlepszego
 
     def next_generation(self) -> None:
-        new_generation: list = self.modify(self.select_best_parents())
+        new_generation: list = self.modify(self.select_best_parents)
         self.old_generation = self.current_generation
         self.current_generation = new_generation
         for i in self.current_generation:
             i.rate(self.map)
+            print("rating", i.rating)
         self.gen_num += 1

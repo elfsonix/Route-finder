@@ -1,0 +1,13 @@
+alpha 1
+population_size 30
+target_value 1000
+g 3.71
+mi 0.5
+rover_mass 20.2
+base_id 0
+base_x 0
+base_y 0
+base_z 0
+init_fuel_need 10
+fuel 10000
+max_generation 99

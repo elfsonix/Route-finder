@@ -5,19 +5,17 @@ import configuration
 from map import Map
 
 
-def calc_cost(point1: dict, point2:dict) -> float:
+def calc_cost(point1: dict, point2: dict) -> float:
     cost = configuration.values["g"] * configuration.values["mi"] * \
            ((point1['x']-point2['x'])**2 + (point1['y'] - point2['y'])**2) * (point1['z'] - point2['z'])
     return abs(cost)
 
 
 def calc_cost_matrix(points: list) -> list:
-    temp = []
-    for i in range(0, len(points)):
-        temp_temp = []
-        for j in range(0, len(points)):
-            temp_temp.append(calc_cost(points[i], points[j]))
-        temp.append(temp_temp)
+    temp = [[0 for x in points] for y in points]
+    for i in range(len(points)):
+        for j in range(len(points)):
+            temp[i][j] = calc_cost(points[i], points[j])
     return temp
 
 

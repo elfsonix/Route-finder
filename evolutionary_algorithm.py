@@ -9,8 +9,8 @@ import random
 def stop(population):
     if population.gen_num > configuration.values["max_generation"]:
         return 1
-    elif population.select_best_specimen().rating > configuration.values["target_value"]:
-        return 1
+    # elif population.select_best_specimen().rating > configuration.values["target_value"]:
+    #     return 1
     else:
         return 0
 

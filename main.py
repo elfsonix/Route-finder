@@ -20,7 +20,7 @@ def main():
           final_population.select_best_allowed_specimen().rating)
 
     print(final_population.gen_num)
-
+    # print(alg_map.cost_matrix)
     pass
 
 
