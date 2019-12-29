@@ -1,4 +1,3 @@
-import cost_calculator
 import evolutionary_algorithm
 from map import Map
 import population

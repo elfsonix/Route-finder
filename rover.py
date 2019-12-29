@@ -12,11 +12,11 @@ class Rover:
         self.current_location = start_location
 
     # zwraca koszt przebytej trasy w danym Solution, tj. osobniku
-    def go(self, route: list, map: Map):
+    def go(self, route: list, my_map: Map):
         previous_point = 0
         cost = 0
         for elem in route:
-            cost += cost_calculator.calc_fuel_usage(self.current_weight, previous_point, elem, map.cost_matrix)
+            cost += cost_calculator.calc_fuel_usage(self.current_weight, previous_point, elem, my_map.cost_matrix)
             previous_point = elem
-        cost += cost_calculator.calc_fuel_usage(self.current_weight, 0, map.cost_matrix)
+        cost += cost_calculator.calc_fuel_usage(self.current_weight, 0, my_map.cost_matrix)
         return cost

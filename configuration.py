@@ -1,17 +1,19 @@
-values: dict = {             # default algorithm parameters
+values: dict = {                        # default algorithm parameters
         "alpha": 1000,                  # penalty function constant
-        "population_size": 30,      # size of each population
-        "target_value": 100000000000,        # target objective function value
-        "g": 3.71,                  # gravitational acceleration [m/s^2]
-        "mi": 0.5,                  # dynamic friction coefficient
-        "rover_mass": 20.2,         # rover's initial mass in kilograms
-        "base_id": 0,               # base point number
-        "base_x": 0,                # base coordinates in x, y, z
+        "population_size": 30,          # size of each population
+        "target_value": 100000000000,   # target objective function value
+        "g": 3.71,                      # gravitational acceleration [m/s^2]
+        "mi": 0.5,                      # dynamic friction coefficient
+        "rover_mass": 20.2,             # rover's initial mass in kilograms
+        "base_id": 0,                   # base point number
+        "base_x": 0,                    # base coordinates in x, y, z
         "base_y": 0,
         "base_z": 0,
-        "init_fuel_need": 10,       # initial fuel needed to start moving
-        "fuel": 10,                # initial fuel value
-        "max_generation": 99,       # max number of generations
+        "init_fuel_need": 10,           # initial fuel needed to start moving
+        "fuel": 10,                     # initial fuel value
+        "max_generation": 99,           # max number of generations
+        "mutation_rate": 50,            # chance that a gene will mutate in %
+        "parent_group_size": 50         # size of parent group in % of the whole population
     }
 
 
