@@ -9,7 +9,8 @@ class Map:
         self.map = []
         for line in f:
             line = line.split()
-            dictionary: dict = {'x': int(line[0]), 'y': int(line[1]), 'z': int(line[2]), 'profit': float(line[3]), 'weight': float(line[4])}
+            dictionary: dict = {'x': int(line[0]), 'y': int(line[1]), 'z': int(line[2]), 'profit': float(line[3]),
+                                'weight': float(line[4])}
             self.map.append(dictionary)
         f.close()
         self.max_point = len(self.map)

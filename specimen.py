@@ -1,3 +1,5 @@
+from copy import copy
+
 import configuration
 import cost_calculator
 import random
@@ -10,6 +12,8 @@ class Specimen:
             self.route = route
         elif isinstance(route, int):
             self.route = [route]
+        else:
+            pass  # todo exception handling?
 
         self.rating = 0
         self.is_allowed = 0
@@ -43,26 +47,29 @@ class Specimen:
         points_covered = []
         cost = 0
         profit = 0
-        # print("route", self.route)
+        print("route", self.route)
         for elem in self.route:  # obliczenie kosztu przejazdu
-
+            print("ccc", elem, previous_point)
             cost += cost_calculator.calc_fuel_usage(weight, previous_point, elem, my_map.cost_matrix)
-            previous_point = elem
+            previous_point = copy(elem)
             if elem not in points_covered:  # sprawdzenie czy punkt byl odwiedzony
                 # print("elem", elem)
                 weight += my_map.get_weight(elem)  # zwiększenie wagi łazika
                 profit += my_map.get_profit(elem)  # zwiększenie zysku
-                cost += 1  # dodanie kosztu rozpoczęcia ruchu
+                cost += configuration.values["init_fuel_need"]  # dodanie kosztu rozpoczęcia ruchu
                 points_covered.append(elem)
         # przejazd do bazy - funkcja kary
         punishment = cost_calculator.calc_fuel_usage(weight, previous_point, 0, my_map.cost_matrix)
-
-        if configuration.values["fuel"] - cost < 0:  # sprawdzenie czy przekroczylismy ograniczenie
+        print("cccc", elem, previous_point)
+        if (configuration.values["fuel"] - cost) < 0:  # sprawdzenie czy przekroczylismy ograniczenie
+            # print("fafarafa", configuration.values["fuel"] - cost)
             self.is_allowed = 0
         else:
+            # print("pycipyci", configuration.values["fuel"] - cost)
             self.is_allowed = 1
 
         # obliczenie wartości funkcji optymalizacji
+        print("profit:", profit, "punishment:", punishment, "cost:", cost, "is allowed:", self.is_allowed)
         self.rating = profit - configuration.values["alpha"] * punishment
 
 

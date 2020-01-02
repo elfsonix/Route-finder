@@ -97,6 +97,7 @@ class Population:
         self.mutate_all(mutation_rate)  # mutowanie
         self.select_parents()
         self.cross_all()
+        self.rate_all()
 
     def select_parents(self) -> None:  # Zmienia current gen na pule rodzicow do rozmnazania metoda progowa
         self.rate_all()
