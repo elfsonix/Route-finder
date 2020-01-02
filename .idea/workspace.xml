@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33e626a9-2978-427a-bfd0-4ffe14d6e93b" name="Default" comment="Działający algorytm - rozpoczęcie testów">
-      <change beforePath="$PROJECT_DIR$/.idea/Route-finder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Route-finder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="33e626a9-2978-427a-bfd0-4ffe14d6e93b" name="Default" comment="Poprawienie funkcji kary">
+      <change afterPath="$PROJECT_DIR$/exceptions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evolutionary_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/evolutionary_algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/specimen.py" beforeDir="false" afterPath="$PROJECT_DIR$/specimen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/population.py" beforeDir="false" afterPath="$PROJECT_DIR$/population.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +140,7 @@
       <workItem from="1576856039610" duration="3255000" />
       <workItem from="1577116319880" duration="637000" />
       <workItem from="1577897338115" duration="8665000" />
-      <workItem from="1577977098819" duration="4042000" />
+      <workItem from="1577977098819" duration="6023000" />
     </task>
     <task id="LOCAL-00001" summary="Zmiana nazwy metody wykonania algorytmu na run">
       <created>1575474592128</created>
@@ -213,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577982840905</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Poprawienie funkcji kary">
+      <created>1577983717988</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1577983717988</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +249,8 @@
     <MESSAGE value="Debug" />
     <MESSAGE value="Debug vol 2" />
     <MESSAGE value="Refaktoryzacja i poprawa kodu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refaktoryzacja i poprawa kodu" />
+    <MESSAGE value="Poprawienie funkcji kary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Poprawienie funkcji kary" />
   </component>
   <component name="WindowStateProjectService">
     <state x="727" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576672330454">
@@ -258,10 +265,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="875" y="272" key="#xdebugger.XInspectDialog/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577982001082" />
-    <state x="615" y="114" key="CommitChangelistDialog2" timestamp="1577982839285">
+    <state x="615" y="114" key="CommitChangelistDialog2" timestamp="1577983758419">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="615" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577982839285" />
+    <state x="615" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983758419" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577928619464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -270,22 +277,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1575475790804" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577983680155">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577985715156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983680155" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577983680155">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577985715156" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577985715156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983680155" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577983680155">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577985715156" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577985715156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983680155" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577983680155">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577985715156" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577985715156">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983680155" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577985715156" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1577982057068">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -314,10 +321,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577922383809" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1577982850992">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1577983778195">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577982850992" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1680.21.1680.1010@0.0.1920.1040" timestamp="1577983778195" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1576688831357">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -352,6 +359,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rover_route_finder$main.coverage" NAME="main Coverage Results" MODIFIED="1577983680149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rover_route_finder$main.coverage" NAME="main Coverage Results" MODIFIED="1577985715151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

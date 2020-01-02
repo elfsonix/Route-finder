@@ -2,7 +2,7 @@ import random
 import operator
 from copy import copy
 from typing import List
-
+from exceptions import *
 from specimen import Specimen
 import configuration
 from map import Map
@@ -111,12 +111,14 @@ class Population:
         whole_population.sort()             # sortowanie populacji od najlepszych do najgorszych
         return whole_population.pop()      # zwracam najlepszego
 
-    def select_best_allowed_specimen(self):
+    def select_best_allowed_specimen(self) -> Specimen:
         whole_population = copy(self.current_generation)
         allowed_specimen = []
         for specimen in whole_population:
             if specimen.is_allowed == 1:
                 allowed_specimen.append(specimen)
+        if len(allowed_specimen) == 0:
+            raise NoSpecimenFound
         allowed_specimen.sort()
         return allowed_specimen.pop()  # zwracam najlepszego
 

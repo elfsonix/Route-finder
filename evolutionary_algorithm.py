@@ -1,6 +1,7 @@
 from map import Map
 from population import Population
 import configuration
+from exceptions import *
 import random
 
 
@@ -20,3 +21,18 @@ def run(my_map: Map):
         # czy musi być ocena tutaj?
         # ocena tylko tam gdzie trzeba
     return generation
+
+
+def run_multiple_times(my_map: Map, t: int = 10) -> list:
+    best_ratings = []
+    for i in range(10):
+        final_population = run(my_map)
+        try:
+            best_ratings.append([i+1, final_population.select_best_allowed_specimen().route,
+                                 final_population.select_best_allowed_specimen().rating])
+        except NoSpecimenFound:
+            print("!", end=" ")
+            pass
+        else:
+            print(".", end=" ")
+    return best_ratings
