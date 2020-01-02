@@ -1,7 +1,6 @@
 import evolutionary_algorithm
 from map import Map
 import population
-import rover
 import specimen
 import configuration
 
@@ -14,8 +13,9 @@ def main():
     for elem in final_population.current_generation:
         print(elem.route, elem.rating, elem.is_allowed)
 
-    print("BEST:", final_population.select_best_specimen().route, final_population.select_best_specimen().rating)
-    print("BEST ALLOWED:", final_population.select_best_allowed_specimen().route,
+    print("BEST:", final_population.select_best_specimen().route, "RATING:",
+          final_population.select_best_specimen().rating)
+    print("BEST ALLOWED:", final_population.select_best_allowed_specimen().route, "RATING:",
           final_population.select_best_allowed_specimen().rating)
 
     print(final_population.gen_num)

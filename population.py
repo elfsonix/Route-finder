@@ -115,7 +115,7 @@ class Population:
         whole_population = copy(self.current_generation)
         allowed_specimen = []
         for specimen in whole_population:
-            if specimen.is_allowed == 0:
+            if specimen.is_allowed == 1:
                 allowed_specimen.append(specimen)
         allowed_specimen.sort()
         return allowed_specimen.pop()  # zwracam najlepszego
