@@ -6,7 +6,11 @@ from map import Map
 
 class Specimen:
     def __init__(self, route: list) -> None:
-        self.route = route
+        if isinstance(route, list):
+            self.route = route
+        elif isinstance(route, int):
+            self.route = [route]
+
         self.rating = 0
         self.is_allowed = 0
 
@@ -39,11 +43,13 @@ class Specimen:
         points_covered = []
         cost = 0
         profit = 0
-
+        # print("route", self.route)
         for elem in self.route:  # obliczenie kosztu przejazdu
+
             cost += cost_calculator.calc_fuel_usage(weight, previous_point, elem, my_map.cost_matrix)
             previous_point = elem
             if elem not in points_covered:  # sprawdzenie czy punkt byl odwiedzony
+                # print("elem", elem)
                 weight += my_map.get_weight(elem)  # zwiększenie wagi łazika
                 profit += my_map.get_profit(elem)  # zwiększenie zysku
                 cost += 1  # dodanie kosztu rozpoczęcia ruchu

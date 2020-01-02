@@ -1,5 +1,5 @@
 values: dict = {                        # default algorithm parameters
-        "alpha": 1000,                  # penalty function constant
+        "alpha": 10,                    # penalty function constant
         "population_size": 30,          # size of each population
         "target_value": 100000000000,   # target objective function value
         "g": 3.71,                      # gravitational acceleration [m/s^2]

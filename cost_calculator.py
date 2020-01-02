@@ -2,7 +2,7 @@
 import math
 import abc
 import configuration
-from map import Map
+# from map import Map
 
 
 def calc_cost(point1: dict, point2: dict) -> float:
