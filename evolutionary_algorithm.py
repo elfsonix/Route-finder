@@ -25,11 +25,11 @@ def run(my_map: Map):
 
 def run_multiple_times(my_map: Map, t: int = 10) -> list:
     best_ratings = []
-    for i in range(10):
+    for i in range(t):
         final_population = run(my_map)
         try:
-            best_ratings.append([i+1, final_population.select_best_allowed_specimen().route,
-                                 final_population.select_best_allowed_specimen().rating])
+            best_ratings.append([i+1, final_population.select_best_allowed_specimen().rating,
+                                 final_population.select_best_allowed_specimen().route])
         except NoSpecimenFound:
             print("!", end=" ")
             pass
