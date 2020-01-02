@@ -11,7 +11,7 @@ def main():
     final_population = evolutionary_algorithm.run(alg_map)
 
     for elem in final_population.current_generation:
-        print(elem.route, elem.rating, elem.is_allowed)
+        print("ROUTE", elem.route, "RATING", elem.rating, "IS ALLOWED", elem.is_allowed)
 
     print("BEST:", final_population.select_best_specimen().route, "RATING:",
           final_population.select_best_specimen().rating)

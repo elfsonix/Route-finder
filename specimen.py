@@ -18,22 +18,16 @@ class Specimen:
         self.rating = 0
         self.is_allowed = 0
 
-    def __lt__(self, other):
+    def __lt__(self, other): # sprawia, że sortowanie jest możliwe
         return self.rating < other.rating
 
-    def __len__(self):
+    def __len__(self): # sprawia, że len(specimen) zwraca długość self.route
         return len(self.route)
-
-    def get_length(self):
-        return len(self.route)
-
-    def get_item(self):
-        return self.route
 
     def mutate(self, mutation_rate, max_point):
         # print("pre mutation", self.route)
         random.seed()
-        for point in range(0, self.get_length()): # iteracja po indeksach genow zamiast po genach
+        for point in range(0, len(self)): # iteracja po indeksach genow zamiast po genach
             if random.randrange(0, 100 / mutation_rate) == 1:
                 # wylosowanie nowego genu na miejsce starego z listy dostepnych punktow
                 self.route[point] = random.randrange(0, max_point)  # TODO rozkład losowania
@@ -41,7 +35,7 @@ class Specimen:
         self.rating = 0
         return self
 
-    def is_route_allowed(self, cost: float) -> None:
+    def is_route_allowed(self, cost: float) -> None: # sprawdzenie czy rozwiązanie jest poprawne
         if configuration.values["fuel"] < cost:  # sprawdzenie czy przekroczylismy ograniczenie
             # print("fafarafa", configuration.values["fuel"] - cost)
             self.is_allowed = 0
@@ -57,7 +51,7 @@ class Specimen:
         points_covered = []
         cost = 0
         profit = 0
-        print("route", self.route)
+        # print("route", self.route)
         for current_point in self.route:  # obliczenie kosztu przejazdu
             # print("ccc", current_point, previous_point)
             cost += my_map.calc_fuel_usage(weight, previous_point, current_point)
@@ -69,13 +63,13 @@ class Specimen:
                 cost += configuration.values["init_fuel_need"]  # dodanie kosztu rozpoczęcia ruchu
                 points_covered.append(current_point)
             self.is_route_allowed(cost)
-            print("COST:", cost, "ALLOWED", self.is_allowed)
+            # print("COST:", cost, "ALLOWED", self.is_allowed)
         # przejazd do bazy - funkcja kary
-        punishment = my_map.calc_fuel_usage(weight, previous_point, 0)
-        # print("cccc", current_point, previous_point)
+        cost += my_map.calc_fuel_usage(weight, previous_point, 0)
+        self.is_route_allowed(cost)
         # obliczenie wartości funkcji optymalizacji
-        print("profit:", profit, "punishment:", punishment, "cost:", cost, "is allowed:", self.is_allowed)
-        self.rating = profit - configuration.values["alpha"] * punishment
+        # print("profit:", profit, "punishment:", punishment, "cost:", cost, "is allowed:", self.is_allowed)
+        self.rating = profit - configuration.values["alpha"] * (0 if self.is_allowed else cost)
 
 
 # test
