@@ -1,7 +1,7 @@
 values: dict = {                        # default algorithm parameters
         "alpha": 0.0000001,               # penalty function constant
         "population_size": 30,          # size of each population
-        "target_value": 100,   # target objective function value
+        "target_value": 10000,   # target objective function value
         "g": 3.71,                      # gravitational acceleration [m/s^2]
         "mi": 0.5,                      # dynamic friction coefficient
         "rover_mass": 20.2,             # rover's initial mass in kilograms
