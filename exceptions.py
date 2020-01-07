@@ -1,4 +1,4 @@
-import exception
+#import exception
 
 
 class NoSpecimenFound(Exception):

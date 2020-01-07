@@ -28,17 +28,11 @@ class Population:
             i.rate(self.map)
         # print("start gen", len(self.current_generation))
 
-    def get_size(self) -> int:                                  # TODO czy potrzebne?
-        return self.size
-
-    def get_solution(self, number) -> Specimen:                 # TODO czy potrzebne?
-        return self.current_generation[number]
-
     # działa
     def mutate_all(self, mutation_rate: float) -> None:
         # print("curr gen", len(self.current_generation))
         # print("size", self.get_size())
-        for each in range(0, self.get_size()-1):
+        for each in range(0, self.size-1):
             self.current_generation[each] = self.current_generation[each].mutate(mutation_rate, self.map.max_point)
 
     # prawie działa
@@ -65,28 +59,13 @@ class Population:
             child_list.append(child_2)
         parent_list.extend(child_list)
         self.current_generation = parent_list + child_list  # TODO selekcje z listy rodzice + dzieci, teraz jest progowo
-        if len(self.current_generation) < 30:
+        if len(self.current_generation) < self.size:
             self.fix_incomplete_population()
         self.current_generation.sort()
         self.current_generation = self.current_generation[:self.size]
 
-    """def cross_parents(self, parent_1: Specimen, parent_2: Specimen) -> list:  #Zachowalam stare rozwiazanie, potem trzeba usunac
-        random.seed()
-        cross_length_1 = random.randrange(0, len(parent_1.route))
-        cross_length_2 = random.randrange(0, len(parent_2.route))
-
-        temp_1 = parent_1.route[:cross_length_1]    # krzyżowanie
-        temp_2 = parent_2.route[:cross_length_2]
-        temp_3 = parent_1.route[cross_length_1:]
-        temp_4 = parent_1.route[cross_length_2:]
-
-        child_1 = Specimen([temp_1, temp_3])        # tworzenie potomków
-        child_2 = Specimen([temp_2, temp_4])
-
-        return[child_1, child_2]"""
-
     def fix_incomplete_population(self):
-        self.current_generation.append(Specimen(random.randrange(1, self.map.max_point, 1)))
+        self.current_generation.append(Specimen(random.randrange(1, self.map.max_point, 1))) # TODO Zapytać czy można
 
     def rate_all(self) -> None:  # dokonuje oceny wszystich osobników w current generation
         for each in self.current_generation:
@@ -122,7 +101,7 @@ class Population:
         allowed_specimen.sort()
         return allowed_specimen.pop()  # zwracam najlepszego
 
-    def next_generation(self) -> None: # modyfikuje starą populacje na nową
+    def next_generation(self) -> None:  # modyfikuje starą populacje na nową
         self.modify()
         for i in self.current_generation:
             i.rate(self.map)

@@ -18,21 +18,22 @@ def run(my_map: Map):
     generation = Population(my_map)
     while not stop(generation):  # wartosc 20 jest jeszcze do ustalenia -> wartosc docelowa funkcji celu
         generation.next_generation()
-        # czy musi być ocena tutaj?
-        # ocena tylko tam gdzie trzeba
     return generation
 
 
-def run_multiple_times(my_map: Map, t: int = 10) -> list:
+def run_multiple_times(my_map: Map, times: int = 10) -> list:
+    routes = []
     best_ratings = []
-    for i in range(t):
+    time = []
+    for i in range(times):
         final_population = run(my_map)
         try:
-            best_ratings.append([i+1, final_population.select_best_allowed_specimen().rating,
-                                 final_population.select_best_allowed_specimen().route])
+            routes.append(final_population.select_best_allowed_specimen().route)
+            best_ratings.append(final_population.select_best_allowed_specimen().rating)
+            time.append(i+1)
         except NoSpecimenFound:
             print("!", end=" ")
             pass
         else:
             print(".", end=" ")
-    return best_ratings
+    return [best_ratings, routes, time]
