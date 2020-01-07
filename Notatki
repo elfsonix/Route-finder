@@ -1,0 +1,9 @@
+1) Czy wolno nam adoptować dziecko do niekompletnej populacji?
+2) Czy wolno nam robić populacje idealnie na rozmiar, czy powinniśmy generować więcej dzieci?
+3) Czy jakaś wariacja w liczbie dzieci na osobnika?
+4) Czy moutacja tylko na dzieciach czy na całości? (Dzieci?)
+5) Jakich wykresów od nas oczekuje?
+6) Czy ja dobrze zrozumiałam rankingową
+7) Co zrobić żeby algorytm przestał faworyzować pojedyncze rozwiązania?
+8) Czy da się zaimplementować rankingową selekcję i jak?
+    Losuję 2x rodziców jeśli chcę dostać 2x dzieci. Którzy rodzice dostają się do nowej populacji?

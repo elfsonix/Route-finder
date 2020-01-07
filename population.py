@@ -59,6 +59,7 @@ class Population:
             child_list.append(child_2)
         parent_list.extend(child_list)
         self.current_generation = parent_list + child_list  # TODO selekcje z listy rodzice + dzieci, teraz jest progowo
+        # TODO jest progowo, ale generujemy dokładną liczbe osobników więc nie ma różnicy
         if len(self.current_generation) < self.size:
             self.fix_incomplete_population()
         self.current_generation.sort()
@@ -78,12 +79,27 @@ class Population:
         self.cross_all()
         self.rate_all()
 
-    def select_parents(self) -> None:  # Zmienia current gen na pule rodzicow do rozmnazania metoda progowa
+    # SELEKCJA
+    def select_parents(self, n_parents: int = None) -> None:  # Zmienia current gen na pule rodzicow po selekcji
         self.rate_all()
         self.current_generation.sort()  # sortowanie populacji od najlepszych do najgorszych
-        # wybor lepszej polowy populacji
+
+        # SELEKCJA PROGOWA 50%
         slicer = int(self.size*configuration.values["parent_group_size"]/100)
         self.current_generation = self.current_generation[:slicer]
+        """
+        # SELEKCJA RANKINGOWA
+        parents = []
+        ni_max = configuration.values["Ni_max"]
+        ni_min = 2-ni_max
+        probability = []
+        n = len(self.current_generation)
+        for i in range(n):
+            probability[i] = (ni_max-(ni_max-ni_min)*(i-1)/(n-1))/n
+        for j in range(n_parents)
+            parents.append(random.choices(self.current_generation, probability))
+        self.current_generation = parents
+        """
 
     def select_best_specimen(self) -> Specimen:
         whole_population = copy(self.current_generation)
