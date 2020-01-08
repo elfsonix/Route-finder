@@ -17,9 +17,9 @@ def main():
         routes_len.append(len(route))
 
     Plotter().style_setup()
-    Plotter().histogram(time, best_ratings)
-    Plotter().scatter_plot(routes_len, best_ratings)
-    # Plotter().scatter_and_histogram(routes_len, best_ratings)
+    Plotter().histogram(best_ratings)
+    Plotter().scatter_plot(routes_len, best_ratings, x_axis_name="Długość genotypu", y_axis_name="Rating")
+    Plotter().scatter_and_histogram(routes_len, best_ratings)
 
 
 if __name__ == '__main__':

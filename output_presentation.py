@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import abc
@@ -25,11 +24,10 @@ class Plotter(abc.ABC):
         plt.show()
         return None
 
-    def histogram(self, x_data, y_data, x_axis_name="OX", y_axis_name="OY", plot_title="Histogram Plot") -> None:
-        x_data.sort()
-        y_data.sort()
+    def histogram(self, data, x_axis_name="OX", y_axis_name="OY", plot_title="Histogram Plot") -> None:
+        data.sort()
         fig, ax = plt.subplots()
-        ax.hist(x_data)
+        ax.hist(data)
         ax.set(xlabel=x_axis_name, ylabel=y_axis_name, title=plot_title)
         plt.show()
         return None

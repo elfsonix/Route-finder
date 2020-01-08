@@ -2,7 +2,6 @@ from map import Map
 from population import Population
 import configuration
 from exceptions import *
-import random
 
 
 def stop(population):

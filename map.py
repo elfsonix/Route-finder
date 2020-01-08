@@ -1,5 +1,4 @@
 import math
-import cost_calculator
 import configuration
 
 
@@ -20,9 +19,6 @@ class Map:
 
     def get_z(self, point_id: int) -> int:
         return self.map[point_id]['z']
-
-    def get_xy_len(self, point_id: int) -> float:  # podaj odl od poczatku ukl wspolrzednych TODO po co to?
-        return math.sqrt(self.map[point_id]['x']**2 + self.map[point_id]['y']**2)
 
     def get_profit(self, point_id: int):
         return self.map[point_id]['profit']
