@@ -8,7 +8,7 @@ from multi_track_drifting import MultiInstanceEAlgorithm
 def main():
     configuration.load_config_file()
     alg_map = Map()
-    data = EAlgorithm().run_multiple_times(alg_map, 100)
+    data = EAlgorithm().run_multiple_times(alg_map, 10)
     print("DONE")
     [best_ratings, routes, time] = data
     for element in range(len(best_ratings)):

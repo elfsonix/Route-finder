@@ -6,7 +6,8 @@ from exceptions import *
 
 class EAlgorithm:
 
-    def stop(self, population):
+    @staticmethod
+    def stop(population):
         if population.gen_num > configuration.values["max_generation"]:  # przekroczenie max liczby generacji
             return 1
         # elif population.select_best_specimen().rating > configuration.values["target_value"]:

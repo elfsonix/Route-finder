@@ -78,14 +78,15 @@ class Population:
         # return self.current_generation[:slicer]
 
         # SELEKCJA RANKINGOWA
+
         parents = []
         ni_max = configuration.values["Ni_max"]
         ni_min = 2-ni_max
         probability = []
         n = len(self.current_generation)
         for el in range(n):
-            probability.append((ni_max-(ni_max-ni_min)*(el-1)/(n-1))/n) # Prawdopodobienstwo wyboru rodzica
-        for j in range(n_parents):
+            probability.append((ni_max-(ni_max-ni_min)*(el-1)/(n-1))/n)  # Prawdopodobienstwo wyboru rodzica
+        for j in range(int(n_parents)):
             [new_parent] = random.choices(self.current_generation, probability)  # Losowanie rodzicow
             # Trzeba tak rozpakować bo zwraca liste w liscie
             parents.append(new_parent)
