@@ -12,7 +12,6 @@ class Population:
         self.gen_num = gen_num                                  # aktualna generacja
         # wstepna inicjalizacja dla t=0
         self.current_generation = []                            # generacja obecna
-        self.old_generation = []                                # generacja poprzednia
         self.map = my_map
 
         temp_list = []
@@ -30,10 +29,9 @@ class Population:
             each.mutate(self.map.max_point)
         return children
 
-    # prawie działa
-    def cross_all(self, parent_list: list) -> list:
+    @staticmethod
+    def cross_all(parent_list: list) -> list:
         child_list = []
-        random.shuffle(parent_list)
 
         while len(parent_list) > 1:
             parent_1 = parent_list.pop(0)
@@ -52,51 +50,46 @@ class Population:
             child_list.append(child_2)
         return child_list
 
-        # parent_list.extend(child_list)
-        # self.current_generation = parent_list + child_list
-        # TODO selekcje z listy rodzice + dzieci, teraz jest progowo
-        # # TODO jest progowo, ale generujemy dokładną liczbe osobników więc nie ma różnicy
-        # if len(self.current_generation) < self.size:
-        #     self.fix_incomplete_population()
-        # self.current_generation.sort()
-        # self.current_generation = self.current_generation[:self.size]
-        #
-
-    def fix_incomplete_population(self):
-        self.current_generation.append(Specimen(random.randrange(1, self.map.max_point, 1))) # TODO Zapytać czy można
-
     def rate_all(self) -> None:  # dokonuje oceny wszystich osobników w current generation
         for each in self.current_generation:
             if each.rating == 0:  # oceniamy tylko te nieocenione jeszcze osobniki
                 each.rate(self.map)
 
-    def modify(self, mutation_rate: float =50) -> None:
-        parents = self.select_parents()
+    def modify(self) -> None:
+        old_generation = copy(self.current_generation)
+        parents = self.select_parents(self.size*configuration.values["parent_group_size"]/100)
         children = self.cross_all(parents)
         children = self.mutate_all(children)
-        self.current_generation = parents + children
+        self.current_generation = children + old_generation
+
+        # Obciecie do rozmiaru populacji
+        self.current_generation.sort()
+        self.current_generation = self.current_generation[:self.size]
+
         self.rate_all()
 
     # SELEKCJA
-    def select_parents(self, n_parents: int = None) -> list:  # Zmienia current gen na pule rodzicow po selekcji
+    def select_parents(self, n_parents: int = None) -> list:
         self.rate_all()
         self.current_generation.sort()  # sortowanie populacji od najlepszych do najgorszych
 
-        # SELEKCJA PROGOWA 50%
-        slicer = int(self.size*configuration.values["parent_group_size"]/100)
-        return self.current_generation[:slicer]
-        #
-        # # SELEKCJA RANKINGOWA
-        # parents = []
-        # ni_max = configuration.values["Ni_max"]
-        # ni_min = 2-ni_max
-        # probability = []
-        # n = len(self.current_generation)
-        # for i in range(n):
-        #     probability[i] = (ni_max-(ni_max-ni_min)*(i-1)/(n-1))/n
-        # for j in range(n_parents)
-        #     parents.append(random.choices(self.current_generation, probability)) # copy?
-        # return parents
+        # # SELEKCJA PROGOWA 50%
+        # slicer = int(self.size*configuration.values["parent_group_size"]/100)
+        # return self.current_generation[:slicer]
+
+        # SELEKCJA RANKINGOWA
+        parents = []
+        ni_max = configuration.values["Ni_max"]
+        ni_min = 2-ni_max
+        probability = []
+        n = len(self.current_generation)
+        for el in range(n):
+            probability.append((ni_max-(ni_max-ni_min)*(el-1)/(n-1))/n) # Prawdopodobienstwo wyboru rodzica
+        for j in range(n_parents):
+            [new_parent] = random.choices(self.current_generation, probability)  # Losowanie rodzicow
+            # Trzeba tak rozpakować bo zwraca liste w liscie
+            parents.append(new_parent)
+        return parents
 
     def select_best_specimen(self) -> Specimen:
         whole_population = copy(self.current_generation)
@@ -119,3 +112,13 @@ class Population:
         for i in self.current_generation:
             i.rate(self.map)
         self.gen_num += 1
+
+
+# TEST
+# my_pop = Population(Map())
+# for i in my_pop.current_generation:
+#     print(i.route)
+# parent = my_pop.select_parents(20)
+# parent.sort()
+# for each in parent:
+#     print("Parent:", each.route, "rating:", each.rating)

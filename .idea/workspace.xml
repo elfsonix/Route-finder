@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33e626a9-2978-427a-bfd0-4ffe14d6e93b" name="Default" comment="Poprawienie funkcji kary">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notatki" beforeDir="false" afterPath="$PROJECT_DIR$/Notatki" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cost_calculator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/evolutionary_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/evolutionary_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output_presentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/output_presentation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/population.py" beforeDir="false" afterPath="$PROJECT_DIR$/population.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/specimen.py" beforeDir="false" afterPath="$PROJECT_DIR$/specimen.py" afterDir="false" />
     </list>
@@ -116,10 +108,8 @@
         <option value="$PROJECT_DIR$/config.txt" />
         <option value="$PROJECT_DIR$/configuration.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/specimen.py" />
         <option value="$PROJECT_DIR$/evolutionary_algorithm.py" />
         <option value="$PROJECT_DIR$/map.py" />
-        <option value="$PROJECT_DIR$/population.py" />
         <option value="$PROJECT_DIR$/output_presentation.py" />
         <option value="$PROJECT_DIR$/Notatki" />
         <option value="$PROJECT_DIR$/main_test.py" />
@@ -175,7 +165,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.population">
     <configuration name="cost_calculator" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Route-finder" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -232,13 +222,33 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="population" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Route-finder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/population.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.cost_calculator" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.output_presentation" />
+      <item itemvalue="Python.population" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.population" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.output_presentation" />
         <item itemvalue="Python.cost_calculator" />
@@ -590,6 +600,13 @@
           <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1294#2021#0" />
+            <element signature="e#3177#3332#0" />
+            <element signature="e#3010#3268#0" />
+            <element signature="e#3246#3966#0" />
+            <element signature="e#4352#4562#0" />
+            <element signature="e#4628#5005#0" />
+            <element signature="e#5092#5242#0" />
           </folding>
         </state>
       </provider>
@@ -664,6 +681,13 @@
           <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1294#2021#0" />
+            <element signature="e#3177#3332#0" />
+            <element signature="e#3010#3268#0" />
+            <element signature="e#3246#3966#0" />
+            <element signature="e#4352#4562#0" />
+            <element signature="e#4628#5005#0" />
+            <element signature="e#5092#5242#0" />
           </folding>
         </state>
       </provider>
@@ -747,6 +771,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/specimen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

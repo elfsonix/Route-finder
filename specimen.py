@@ -25,11 +25,11 @@ class Specimen:
 
     def mutate(self, max_point, mutation_rate=configuration.values["mutation_rate"]):
         random.seed()
-        for point in range(0, len(self)): # iteracja po indeksach genow zamiast po genach
+        for point in range(0, len(self)):  # iteracja po indeksach genow zamiast po genach
             if random.randrange(0, 100 / mutation_rate) == 1:
                 # wylosowanie nowego genu na miejsce starego z listy dostepnych punktow
                 self.route[point] = random.randrange(0, max_point)  # TODO rozkład losowania
-        self.rating = 0
+        self.rating = 0  # Aby ocena zostala dokonana ponownie
         return self
 
     def is_route_allowed(self, cost: float) -> None:  # sprawdzenie czy rozwiązanie jest poprawne
