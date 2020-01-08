@@ -1,11 +1,9 @@
-import math
 import configuration
 
 
 class Map:
     def __init__(self, file: str = "points.txt") -> None:
         f = open(file)
-        i: int = 0
         self.map = []
         for line in f:
             line = line.split()
@@ -26,7 +24,8 @@ class Map:
     def get_weight(self, point_id: int):
         return self.map[point_id]['weight']
 
-    def calc_cost(self, point1: dict, point2: dict) -> float:
+    @staticmethod
+    def calc_cost(point1: dict, point2: dict) -> float:
         cost = configuration.values["g"] * configuration.values["mi"] * \
                ((point1['x']-point2['x'])**2 + (point1['y'] - point2['y'])**2) * (point1['z'] - point2['z'])
         return abs(cost)

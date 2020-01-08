@@ -1,11 +1,18 @@
-1) Czy wolno nam adoptować dziecko do niekompletnej populacji? nie
-2) Czy wolno nam robić populacje idealnie na rozmiar, czy powinniśmy generować więcej dzieci? wiecej
-3) Czy jakaś wariacja w liczbie dzieci na osobnika? tak
-4) Jakich wykresów od nas oczekuje? -
-5) Czy ja dobrze zrozumiałam rankingową? tak
-6) Jak połączyć rankingową z mi+lambda -
+1) Czy wolno nam adoptować dziecko do niekompletnej populacji?
+                        Nie
+2) Czy wolno nam robić populacje idealnie na rozmiar, czy powinniśmy generować więcej dzieci?
+                        Dzieci więcej, najlepiej każdy z każdym ale niekoniecznie
+3) Czy jakaś wariacja w liczbie dzieci na osobnika?
+                        Tak, niektórzy mogą mieć kilkoro dzieci, a niektórzy wcale
+4) Jakich wykresów od nas oczekuje?
+                        @Jacek
+5) Czy ja dobrze zrozumiałam rankingową?
+                        Tak, jest dobrze
+6) Jak połączyć rankingową z mi+lambda
+                        Generacja dzieci rankingowo + cała stara generacja -> obcięcia = nowa generacja
 8) Czy da się zaimplementować rankingową selekcję i jak? tak
-9) Losuję 2x rodziców jeśli chcę dostać 2x dzieci. Którzy rodzice dostają się do nowej populacji? wszyscy
-10) GUI? proste w konsoli
-
-Generacja dzieci rankingowo + cała stara generacja -> obcięcia = nowa generacja
+                        ^^^
+9) Losuję 2x rodziców jeśli chcę dostać 2x dzieci. Którzy rodzice dostają się do nowej populacji?
+                        Wszyscy
+10) GUI?
+                        Proste w konsoli
