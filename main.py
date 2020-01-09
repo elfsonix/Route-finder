@@ -6,21 +6,26 @@ from multi_track_drifting import MultiInstanceEAlgorithm
 
 
 def main():
-    configuration.load_config_file()
-    alg_map = Map()
-    data = EAlgorithm().run_multiple_times(alg_map, 10)
-    print("DONE")
-    [best_ratings, routes, time] = data
-    for element in range(len(best_ratings)):
-        print("Try", time[element], ":", best_ratings[element], routes[element])
-    routes_len = []
-    for route in routes:
-        routes_len.append(len(route))
-
+    # configuration.load_config_file()
+    # alg_map = Map()
+    # data = EAlgorithm().run_multiple_times(alg_map, 1)
+    # print("DONE")
+    # [best_ratings, routes, time] = data
+    # for element in range(len(best_ratings)):
+    #     print("Try", time[element], ":", best_ratings[element], routes[element])
+    # routes_len = []
+    # for route in routes:
+    #     routes_len.append(len(route))
+    #
     # Plotter().style_setup()
-    Plotter().histogram(best_ratings)
-    Plotter().scatter_plot(routes_len, best_ratings, x_axis_name="Długość genotypu", y_axis_name="Rating")
-    Plotter().scatter_and_histogram(routes_len, best_ratings)
+    # Plotter().histogram(best_ratings)
+    # Plotter().scatter_plot(routes_len, best_ratings, x_axis_name="Długość genotypu", y_axis_name="Rating")
+    # Plotter().scatter_and_histogram(routes_len, best_ratings)
+
+    ea = MultiInstanceEAlgorithm()
+    ea.load_multiple_configs()
+    ea.load_multiple_points()
+    ea.execute_algorithm()
 
 
 if __name__ == '__main__':

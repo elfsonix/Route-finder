@@ -72,7 +72,6 @@ class Population:
     def select_parents(self, n_parents: int = None) -> list:
         self.rate_all()
         self.current_generation.sort()  # sortowanie populacji od najlepszych do najgorszych
-
         # # SELEKCJA PROGOWA 50%
         # slicer = int(self.size*configuration.values["parent_group_size"]/100)
         # return self.current_generation[:slicer]
@@ -106,7 +105,7 @@ class Population:
         if len(allowed_specimen) == 0:
             raise NoSpecimenFound
         allowed_specimen.sort()
-        return allowed_specimen.pop()  # zwracam najlepszego
+        return allowed_specimen.pop(0)  # zwracam najlepszego
 
     def next_generation(self) -> None:  # modyfikuje starą populacje na nową
         self.modify()

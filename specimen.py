@@ -17,7 +17,7 @@ class Specimen:
         self.rating = 0
         self.is_allowed = 0
 
-    def __lt__(self, other):  # sprawia, że sortowanie jest możliwe
+    def __gt__(self, other):  # sprawia, że sortowanie jest możliwe
         return self.rating < other.rating
 
     def __len__(self):  # sprawia, że len(specimen) zwraca długość self.route

@@ -2,9 +2,10 @@ from map import Map
 from population import Population
 import configuration
 from exceptions import *
+import abc
 
 
-class EAlgorithm:
+class EAlgorithm(abc.ABC):
 
     @staticmethod
     def stop(population):
