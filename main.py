@@ -25,8 +25,13 @@ def main():
     ea = MultiInstanceEAlgorithm()
     ea.load_multiple_configs()
     ea.load_multiple_points()
-    ea.execute_algorithm()
+    best, worst, average, std = ea.execute_algorithm()
+    dataset_names = ['G1', 'G2', 'G3', 'G4', 'G5', 'G6']
+    xlabels = ['Best', 'Worst', 'Average', 'Standart Deviation']
+    title = 'Ratings'
 
+    Plotter().grouped_barplot(best, worst, average, std, dataset_names, xlabels, 'Rating', title)
+    Plotter().barplot(best, dataset_names, "Rating", title)
 
 if __name__ == '__main__':
     # TODO wywołanie algorytmu

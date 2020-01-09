@@ -77,3 +77,64 @@ class Plotter(abc.ABC):
 
         plt.show()
         return None
+
+    @staticmethod
+    def barplot(data, xlabels, ylabel, title):
+        ind = np.arange(len(data))
+        fig, ax = plt.subplots()
+        barplt = ax.bar(ind, data, width=0.5)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xticks(ind)
+        ax.set_xticklabels(xlabels)
+        fig.tight_layout()
+        plt.show()
+
+    @staticmethod
+    def grouped_barplot(data_1: list, data_2: list, data_3: list, data_4: list, xlabels: list, legend: list,
+                        ylabel, title):
+        ind = np.arange(len(data_1))  # the x locations for the groups
+        width = 0.20  # the width of the bars
+
+        fig, ax = plt.subplots()
+        rects1 = ax.bar(ind - width * 3 / 2, data_1, width,
+                        label=legend[0])
+        rects2 = ax.bar(ind - width / 2, data_2, width,
+                        label=legend[1])
+        rects3 = ax.bar(ind + width / 2, data_3, width,
+                        label=legend[2])
+        rects4 = ax.bar(ind + width * 3 / 2, data_4, width,
+                        label=legend[3])
+
+        # Add some text for labels, title and custom x-axis tick labels, etc.
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xticks(ind)
+        ax.set_xticklabels(xlabels)
+        ax.legend()
+
+        # def autolabel(rects, xpos='center'):
+        #     """
+        #     Attach a text label above each bar in *rects*, displaying its height.
+        #
+        #     *xpos* indicates which side to place the text w.r.t. the center of
+        #     the bar. It can be one of the following {'center', 'right', 'left'}.
+        #     """
+        #
+        #     ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        #     offset = {'center': 0, 'right': 1, 'left': -1}
+        #
+        #     for rect in rects:
+        #         height = rect.get_height()
+        #         ax.annotate('{}'.format(height),
+        #                     xy=(rect.get_x() + rect.get_width() / 2, height),
+        #                     xytext=(offset[xpos] * 3, 3),  # use 3 points offset
+        #                     textcoords="offset points",  # in both directions
+        #                     ha=ha[xpos], va='bottom')
+
+        # autolabel(rects1, "left")
+        # autolabel(rects2, "right")
+
+        fig.tight_layout()
+
+        plt.show()

@@ -54,3 +54,5 @@ class MultiInstanceEAlgorithm:
         print("WORST:", self.worst_ratings)
         print("AVERAGE:", self.avg_ratings)
         print("STD:", self.std_ratings)
+
+        return self.best_ratings, self.worst_ratings, self.avg_ratings, self.std_ratings
