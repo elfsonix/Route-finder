@@ -11,7 +11,7 @@ class Population:
         self.size = size
         self.gen_num = gen_num                                  # aktualna generacja
         # wstepna inicjalizacja dla t=0
-        self.current_generation = []                            # generacja obecna
+        self.current_generation: list = []                            # generacja obecna
         self.map = my_map
 
         temp_list = []
