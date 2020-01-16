@@ -28,7 +28,7 @@ class Specimen:
         for point in range(0, len(self)):  # iteracja po indeksach genow zamiast po genach
             if random.randrange(0, 100 / mutation_rate) == 1:
                 # wylosowanie nowego genu na miejsce starego z listy dostepnych punktow
-                self.route[point] = random.randrange(0, max_point)  # TODO rozkład losowania
+                self.route[point] = random.randrange(0, max_point)
         self.rating = 0  # Aby ocena zostala dokonana ponownie
         return self
 

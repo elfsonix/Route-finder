@@ -40,6 +40,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # TODO wywołanie algorytmu
     main()
     pass
