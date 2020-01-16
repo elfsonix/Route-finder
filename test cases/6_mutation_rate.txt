@@ -1,1 +1,16 @@
-0.0000001 30 10000 3.71 0.5 20.2 0 0 0 0 10 1000 99 20 50 1
+alpha 0.0000001
+population_size 30
+target_value 10000
+g 3.71
+mi 0.5
+rover_mass 20.2
+base_id 0
+base_x 0
+base_y 0
+base_z 0
+init_fuel_need 10
+fuel 1000
+max_generation 99
+mutation_rate 20
+parent_group_size 50
+Ni_max 1
