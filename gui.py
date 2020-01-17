@@ -44,7 +44,8 @@ class GUI:  # TODO całe GUI
 
         elif choice == "2":
             mea = MultiInstanceEAlgorithm(set_specimen=True)
-            best, worst, avg, std = mea.execute_algorithm()
+            best, worst, avg, std = mea.execute_algorithm(times=10)
+            Plotter().grouped_barplot(best, worst, avg, std, ["", "", "", ""], ["", "", "", ""], "", "")
         pass
 
     def custom_instance_menu(self):

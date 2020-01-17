@@ -110,7 +110,7 @@ class Plotter(abc.ABC):
         ax.set_ylabel(ylabel)
         ax.set_title(title)
         ax.set_xticks(ind)
-        ax.set_xticklabels(xlabels)
+        # ax.set_xticklabels(xlabels)
         ax.legend()
 
         # def autolabel(rects, xpos='center'):

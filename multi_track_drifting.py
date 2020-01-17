@@ -45,18 +45,20 @@ class MultiInstanceEAlgorithm:
             self.cases.append(temp)
         pass
 
-    def execute_algorithm(self):        # wykonanie algorytmu dla różnych konfiguracji
+    def execute_algorithm(self, times: int = 100):        # wykonanie algorytmu dla różnych konfiguracji
         for config_it in self.cases:
             print("@")
             for maps_in in self.maps:
                 print("#")
                 configuration.values = config_it
-                [best_ratings, routes, time] = EAlgorithm().run_multiple_times(maps_in, set_specimens=self.set_specimen)
+                [best_ratings, routes, time] = EAlgorithm().run_multiple_times(maps_in, times=times,
+                                                                               set_specimens=self.set_specimen)
                 best_ratings.sort()
                 self.best_ratings.append(best_ratings[-1])
                 self.worst_ratings.append(best_ratings[0])
                 self.avg_ratings.append(mean(best_ratings))
                 self.std_ratings.append(std(best_ratings))
+                print()
             print()
         print()
         print("BEST:", self.best_ratings)
