@@ -8,7 +8,10 @@ from map import Map
 class Specimen:
     def __init__(self, route: list) -> None:
         if isinstance(route, list):
-            self.route = route
+            if len(route) == 0:
+                self.route = 9
+            else:
+                self.route = route
         elif isinstance(route, int):
             self.route = [route]
         else:

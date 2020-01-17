@@ -9,13 +9,19 @@ from evolutionary_algorithm import EAlgorithm
 
 class MultiInstanceEAlgorithm:
 
-    def __init__(self):
+    def __init__(self, set_specimen: bool = False):
         self.best_ratings = []
         self.worst_ratings = []
         self.avg_ratings = []
         self.std_ratings = []
         self.maps = []
-        self.configs = []
+        self.cases = []
+        self.specimens = []
+        self.cases_names = []
+
+        self.load_multiple_points()
+        self.load_multiple_cases()
+        self.set_specimen = set_specimen
 
     def load_multiple_points(self) -> None:     # wczytanie roznych map
         files_list = glob.glob('maps/points*.txt')
@@ -23,9 +29,9 @@ class MultiInstanceEAlgorithm:
             self.maps.append(Map(file))
         pass
 
-    def load_multiple_configs(self) -> None:    # wczytanie roznych konfiguracji
-        floats = ["g", "mi", "alpha", "rover_mass"]
-        files_list = glob.glob('configs/config*.txt')
+    def load_multiple_cases(self) -> None:    # wczytanie roznych konfiguracji
+        floats = ["g", "mi", "alpha", "rover_mass", "Ni_max"]
+        files_list = glob.glob('test_cases/*.txt')
         temp: dict = {}
         for file in files_list:
             f = open(file)
@@ -36,19 +42,22 @@ class MultiInstanceEAlgorithm:
                 else:
                     temp[key] = int(content)
             f.close()
-            self.configs.append(temp)
+            self.cases.append(temp)
         pass
 
     def execute_algorithm(self):        # wykonanie algorytmu dla różnych konfiguracji
-        for config_it in self.configs:
+        for config_it in self.cases:
+            print("@")
             for maps_in in self.maps:
+                print("#")
                 configuration.values = config_it
-                [best_ratings, routes, time] = EAlgorithm().run_multiple_times(maps_in)
+                [best_ratings, routes, time] = EAlgorithm().run_multiple_times(maps_in, set_specimens=self.set_specimen)
                 best_ratings.sort()
                 self.best_ratings.append(best_ratings[-1])
                 self.worst_ratings.append(best_ratings[0])
                 self.avg_ratings.append(mean(best_ratings))
                 self.std_ratings.append(std(best_ratings))
+            print()
         print()
         print("BEST:", self.best_ratings)
         print("WORST:", self.worst_ratings)
@@ -56,3 +65,4 @@ class MultiInstanceEAlgorithm:
         print("STD:", self.std_ratings)
 
         return self.best_ratings, self.worst_ratings, self.avg_ratings, self.std_ratings
+

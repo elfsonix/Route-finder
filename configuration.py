@@ -20,7 +20,7 @@ values: dict = {                        # default algorithm parameters
 
 def load_config_file(file: str = "config.txt"):
     global values
-    floats = ["g", "mi", "alpha", "rover_mass"]
+    floats = ["g", "mi", "alpha", "rover_mass", "Ni_max"]
     f = open(file)
     for line in f:
         key, content = line.split()

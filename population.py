@@ -7,19 +7,22 @@ from map import Map
 
 
 class Population:
-    def __init__(self, my_map: Map, size: int = configuration.values["population_size"], gen_num: int = 0) -> None:
+    def __init__(self, my_map: Map, size: int = configuration.values["population_size"], gen_num: int = 0,
+                 set_specimens: bool = False) -> None:
         self.size = size
         self.gen_num = gen_num                                  # aktualna generacja
         # wstepna inicjalizacja dla t=0
         self.current_generation: list = []                            # generacja obecna
         self.map = my_map
-
-        temp_list = []
-        for j in range(0, configuration.values["population_size"]):
-            for i in range(random.randrange(1, self.map.max_point, 1)):      # tworzę losowo generację początkową
-                temp_list.append(random.randrange(1, self.map.max_point, 1))
-            self.current_generation.append(Specimen(temp_list))
+        if set_specimens:
+            self.load_multiple_specimens()
+        else:
             temp_list = []
+            for j in range(0, configuration.values["population_size"]):
+                for i in range(random.randrange(1, self.map.max_point, 1)):      # tworzę losowo generację początkową
+                    temp_list.append(random.randrange(1, self.map.max_point, 1))
+                self.current_generation.append(Specimen(temp_list))
+                temp_list = []
         for i in self.current_generation:
             i.rate(self.map)
 
@@ -52,21 +55,28 @@ class Population:
 
     def rate_all(self) -> None:  # dokonuje oceny wszystich osobników w current generation
         for each in self.current_generation:
-            if each.rating == 0:  # oceniamy tylko te nieocenione jeszcze osobniki
-                each.rate(self.map)
+            each.rate(self.map)
 
     def modify(self) -> None:
         old_generation = copy(self.current_generation)
         parents = self.select_parents(self.size*configuration.values["parent_group_size"]/100)
         children = self.cross_all(parents)
         children = self.mutate_all(children)
-        self.current_generation = children + old_generation
 
+        self.current_generation = children + old_generation
+        self.rate_all()
+        # for elem in children:
+        #     print(elem.rating)
         # Obciecie do rozmiaru populacji
         self.current_generation.sort()
         self.current_generation = self.current_generation[:self.size]
 
-        self.rate_all()
+
+
+        # if old_generation == self.current_generation:
+        #     print("zjebałem")
+        # if children not in self.current_generation:
+        #     print("kurwa mać")
 
     # SELEKCJA
     def select_parents(self, n_parents: int = None) -> list:
@@ -103,7 +113,8 @@ class Population:
             if specimen.is_allowed == 1:
                 allowed_specimen.append(specimen)
         if len(allowed_specimen) == 0:
-            raise NoSpecimenFound
+            # raise NoSpecimenFound
+            return Specimen(0)
         allowed_specimen.sort()
         return allowed_specimen.pop(0)  # zwracam najlepszego
 
@@ -113,7 +124,15 @@ class Population:
             i.rate(self.map)
         self.gen_num += 1
 
-
+    def load_multiple_specimens(self, file: str = "start_specimens/specimens.txt"):
+        f = open(file)
+        for line in f:
+            temp = []
+            specimen_route = line.split()
+            for elem in specimen_route:
+                temp.append(int(elem))
+            self.current_generation.append(Specimen(temp))
+        f.close()
 # TEST
 # my_pop = Population(Map())
 # for i in my_pop.current_generation:

@@ -4,7 +4,7 @@ from map import Map
 from output_presentation import Plotter
 
 
-class GUI:
+class GUI:  # TODO całe GUI
     def __init__(self):
         print("Algorytm ewolucyjny analizujący trasę łazika z poborem próbek")
         print("Stworzony na zajęcia 'Matematyczne Metody Wspomagania Decyzji', III rok AiR I stopnia, WEAIiIB, AGH")
@@ -15,7 +15,7 @@ class GUI:
 
     def main_menu(self):
         print("1. Pojedyncze uruchomienie")
-        print("2. Wielokrotne uruchomienie dla różnych przypadków")
+        print("2. Wielokrotne uruchomienie")
         print("Q - Zakończ")
         choice = input()
         if choice == "1":
@@ -28,13 +28,28 @@ class GUI:
             self.main_menu()
 
     def multi_instance_menu(self):
+        print("Wielokrotne uruchomienie dla:")
+        print("1. Domyślnych wartości i losowych osobników startowych")
+        print("2. Przypadków testowych i predefiniowanych osobników startowych")
+        choice = input()
+        if choice == "1":
+            print("Ile razy?")
+            n = input()
+            ea_map = Map()
+            ea = EAlgorithm()
+            [routes, ratings, time] = ea.run_multiple_times(ea_map, int(n))
+            print()
+            for i in range(len(routes)):
+                print("TIME", time[i], "RATING", ratings[i], "ROUTE", routes[i])
+
+        elif choice == "2":
+            mea = MultiInstanceEAlgorithm(set_specimen=True)
+            best, worst, avg, std = mea.execute_algorithm()
         pass
 
     def custom_instance_menu(self):
         print("Pojedynczy przypadek z parametrami:")
-        print("1. Domyślnymi")
-        print("2. Wprowadzonymi")
-        print("3. Losowymi")
+        print("1. Start")
         print("R - Powrót")
         choice = input()
         if choice == "1":
@@ -42,10 +57,9 @@ class GUI:
             ea = EAlgorithm()
             result = ea.run(ea_map)
             for elem in result.current_generation:
-                print("Specimen:", elem.route, "rating:", elem.rating)
+                print("Specimen:", elem.route, "rating:", elem.rating, elem.is_allowed)
+            print("BEST:", result.select_best_allowed_specimen().route, result.select_best_allowed_specimen().rating)
         elif choice == "2":
-            pass
-        elif choice == "3":
             pass
         elif choice == "R" or "r":
             self.main_menu()
