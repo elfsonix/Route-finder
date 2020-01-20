@@ -1,4 +1,5 @@
 import configuration
+import math
 
 
 class Map:
@@ -26,12 +27,13 @@ class Map:
 
     @staticmethod
     def calc_cost(point1: dict, point2: dict) -> float:
-        cost = configuration.values["g"] * configuration.values["mi"] * \
-               ((point1['x']-point2['x'])**2 + (point1['y'] - point2['y'])**2) * (point1['z'] - point2['z'])
+        cost = configuration.values["g"] * (configuration.values["mi"] * math.sqrt((point1['x']-point2['x'])**2 +
+                                                                                   (point1['y'] - point2['y'])**2)
+                                            + (point1['z'] - point2['z']))
         return abs(cost)
 
     def calc_cost_matrix(self, points: list) -> list:
-        temp = [[0 for x in points] for y in points]
+        temp = [[]]
         for i in range(len(points)):
             for j in range(len(points)):
                 temp[i][j] = self.calc_cost(points[i], points[j])
