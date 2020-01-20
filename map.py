@@ -13,7 +13,6 @@ class Map:
             self.map.append(dictionary)
         f.close()
         self.max_point = len(self.map)
-
         self.cost_matrix = self.calc_cost_matrix(self.map)
 
     def get_z(self, point_id: int) -> int:
@@ -27,13 +26,12 @@ class Map:
 
     @staticmethod
     def calc_cost(point1: dict, point2: dict) -> float:
-        cost = configuration.values["g"] * (configuration.values["mi"] * math.sqrt((point1['x']-point2['x'])**2 +
-                                                                                   (point1['y'] - point2['y'])**2)
-                                            + (point1['z'] - point2['z']))
+        cost = configuration.values["g"] * (configuration.values["mi"] * math.sqrt((
+                            point1['x']-point2['x'])**2 + (point1['y'] - point2['y'])**2) + (point1['z'] - point2['z']))
         return abs(cost)
 
     def calc_cost_matrix(self, points: list) -> list:
-        temp = [[]]
+        temp = [[0.0 for x in range(len(points))] for y in range(len(points))]
         for i in range(len(points)):
             for j in range(len(points)):
                 temp[i][j] = self.calc_cost(points[i], points[j])

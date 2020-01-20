@@ -1,5 +1,6 @@
 import random
 from copy import copy
+from numpy import mean
 from exceptions import *
 from specimen import Specimen
 import configuration
@@ -23,8 +24,7 @@ class Population:
                     temp_list.append(random.randrange(1, self.map.max_point, 1))
                 self.current_generation.append(Specimen(temp_list))
                 temp_list = []
-        for i in self.current_generation:
-            i.rate(self.map)
+        self.rate_all()
 
     # działa
     def mutate_all(self, children: list) -> list:
@@ -70,9 +70,6 @@ class Population:
         # Obciecie do rozmiaru populacji
         self.current_generation.sort()
         self.current_generation = self.current_generation[:self.size]
-
-
-
         # if old_generation == self.current_generation:
         #     print("zjebałem")
         # if children not in self.current_generation:
@@ -82,12 +79,12 @@ class Population:
     def select_parents(self, n_parents: int = None) -> list:
         self.rate_all()
         self.current_generation.sort()  # sortowanie populacji od najlepszych do najgorszych
+
         # # SELEKCJA PROGOWA 50%
         # slicer = int(self.size*configuration.values["parent_group_size"]/100)
         # return self.current_generation[:slicer]
 
         # SELEKCJA RANKINGOWA
-
         parents = []
         ni_max = configuration.values["Ni_max"]
         ni_min = 2-ni_max
@@ -104,7 +101,7 @@ class Population:
     def select_best_specimen(self) -> Specimen:
         whole_population = copy(self.current_generation)
         whole_population.sort()             # sortowanie populacji od najlepszych do najgorszych
-        return whole_population.pop()      # zwracam najlepszego
+        return whole_population.pop(0)      # zwracam najlepszego
 
     def select_best_allowed_specimen(self) -> Specimen:
         whole_population = copy(self.current_generation)
@@ -118,11 +115,49 @@ class Population:
         allowed_specimen.sort()
         return allowed_specimen.pop(0)  # zwracam najlepszego
 
+    def select_worst_specimen(self) -> Specimen:
+        whole_population = copy(self.current_generation)
+        whole_population.sort()  # sortowanie populacji od najlepszych do najgorszych
+        return whole_population.pop()
+
+    def select_worst_allowed_specimen(self):
+        whole_population = copy(self.current_generation)
+        allowed_specimen = []
+        for specimen in whole_population:
+            if specimen.is_allowed == 1:
+                allowed_specimen.append(specimen)
+        if len(allowed_specimen) == 0:
+            # raise NoSpecimenFound
+            return Specimen(0)
+        allowed_specimen.sort()
+        return allowed_specimen.pop()
+
+    def get_average_specimen_rating(self):
+        whole_population = copy(self.current_generation)
+        whole_population_rating = []
+        for specimen in whole_population:
+            whole_population_rating.append(specimen.rating)
+        return mean(whole_population_rating)
+
+    def get_average_allowed_specimen_rating(self):
+        whole_population = copy(self.current_generation)
+        allowed_specimen = []
+        for specimen in whole_population:
+            if specimen.is_allowed == 1:
+                allowed_specimen.append(specimen)
+        if len(allowed_specimen) == 0:
+            # raise NoSpecimenFound
+            return 0
+        allowed_specimen_rating = []
+        for specimen in allowed_specimen:
+            allowed_specimen_rating.append(specimen.rating)
+        return mean(allowed_specimen_rating)
+
     def next_generation(self) -> None:  # modyfikuje starą populacje na nową
         self.modify()
-        for i in self.current_generation:
-            i.rate(self.map)
+        self.rate_all()
         self.gen_num += 1
+        return None
 
     def load_multiple_specimens(self, file: str = "start_specimens/specimens.txt"):
         f = open(file)

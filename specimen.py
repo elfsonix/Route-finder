@@ -9,7 +9,7 @@ class Specimen:
     def __init__(self, route: list) -> None:
         if isinstance(route, list):
             if len(route) == 0:
-                self.route = 9
+                self.route = [0]
             else:
                 self.route = route
         elif isinstance(route, int):

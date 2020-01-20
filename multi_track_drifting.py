@@ -17,6 +17,7 @@ class MultiInstanceEAlgorithm:
         self.maps = []
         self.cases = []
         self.specimens = []
+        self.maps_names = []
         self.cases_names = []
 
         self.load_multiple_points()
@@ -25,6 +26,7 @@ class MultiInstanceEAlgorithm:
 
     def load_multiple_points(self) -> None:     # wczytanie roznych map
         files_list = glob.glob('maps/points*.txt')
+        self.maps_names = files_list
         for file in files_list:
             self.maps.append(Map(file))
         pass
@@ -35,6 +37,7 @@ class MultiInstanceEAlgorithm:
         temp: dict = {}
         for file in files_list:
             f = open(file)
+            self.cases_names = files_list
             for line in f:
                 key, content = line.split()
                 if key in floats:
@@ -51,8 +54,8 @@ class MultiInstanceEAlgorithm:
             for maps_in in self.maps:
                 print("#")
                 configuration.values = config_it
-                [best_ratings, routes, time] = EAlgorithm().run_multiple_times(maps_in, times=times,
-                                                                               set_specimens=self.set_specimen)
+                ea = EAlgorithm(maps_in, set_specimens=self.set_specimen)
+                [best_ratings, routes, time] = ea.run_multiple_times(times=times)
                 best_ratings.sort()
                 self.best_ratings.append(best_ratings[-1])
                 self.worst_ratings.append(best_ratings[0])

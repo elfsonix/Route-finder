@@ -1,6 +1,6 @@
-alpha 0.1
+alpha 100
 population_size 30
-target_value 10000
+target_value 100
 g 3.71
 mi 0.5
 rover_mass 20.2

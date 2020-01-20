@@ -2,6 +2,7 @@ from evolutionary_algorithm import EAlgorithm
 from multi_track_drifting import MultiInstanceEAlgorithm
 from map import Map
 from output_presentation import Plotter
+import test
 
 
 class GUI:  # TODO całe GUI
@@ -16,12 +17,15 @@ class GUI:  # TODO całe GUI
     def main_menu(self):
         print("1. Pojedyncze uruchomienie")
         print("2. Wielokrotne uruchomienie")
+        print("3. Test algorytmu")
         print("Q - Zakończ")
         choice = input()
         if choice == "1":
             self.custom_instance_menu()
         elif choice == "2":
             self.multi_instance_menu()
+        elif choice == "3":
+            best, worst, avg, std = test.run_tests()
         elif choice == "q" or "Q":
             pass
         else:
@@ -30,7 +34,6 @@ class GUI:  # TODO całe GUI
     def multi_instance_menu(self):
         print("Wielokrotne uruchomienie dla:")
         print("1. Domyślnych wartości i losowych osobników startowych")
-        print("2. Przypadków testowych i predefiniowanych osobników startowych")
         choice = input()
         if choice == "1":
             print("Ile razy?")
@@ -41,11 +44,6 @@ class GUI:  # TODO całe GUI
             print()
             for i in range(len(routes)):
                 print("TIME", time[i], "RATING", ratings[i], "ROUTE", routes[i])
-
-        elif choice == "2":
-            mea = MultiInstanceEAlgorithm(set_specimen=True)
-            best, worst, avg, std = mea.execute_algorithm(times=10)
-            Plotter().grouped_barplot(best, worst, avg, std, ["", "", "", ""], ["", "", "", ""], "", "")
         pass
 
     def custom_instance_menu(self):

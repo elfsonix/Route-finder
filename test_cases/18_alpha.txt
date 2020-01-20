@@ -1,4 +1,4 @@
-alpha 0.00000005
+alpha 1000
 population_size 30
 target_value 10000
 g 3.71
