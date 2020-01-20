@@ -31,7 +31,8 @@ class GUI:  # TODO całe GUI
         else:
             self.main_menu()
 
-    def multi_instance_menu(self):
+    @staticmethod
+    def multi_instance_menu():
         print("Wielokrotne uruchomienie dla:")
         print("1. Domyślnych wartości i losowych osobników startowych")
         choice = input()
@@ -39,8 +40,8 @@ class GUI:  # TODO całe GUI
             print("Ile razy?")
             n = input()
             ea_map = Map()
-            ea = EAlgorithm()
-            [routes, ratings, time] = ea.run_multiple_times(ea_map, int(n))
+            ea = EAlgorithm(ea_map)
+            [routes, ratings, time] = ea.run_multiple_times(int(n))
             print()
             for i in range(len(routes)):
                 print("TIME", time[i], "RATING", ratings[i], "ROUTE", routes[i])
@@ -53,8 +54,8 @@ class GUI:  # TODO całe GUI
         choice = input()
         if choice == "1":
             ea_map = Map()
-            ea = EAlgorithm()
-            result = ea.run(ea_map)
+            ea = EAlgorithm(ea_map)
+            result = ea.run()
             for elem in result.current_generation:
                 print("Specimen:", elem.route, "rating:", elem.rating, elem.is_allowed)
             print("BEST:", result.select_best_allowed_specimen().route, result.select_best_allowed_specimen().rating)

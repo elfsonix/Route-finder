@@ -39,11 +39,11 @@ class MultiInstanceEAlgorithm:
             f = open(file)
             self.cases_names = files_list
             for line in f:
-                key, content = line.split()
-                if key in floats:
-                    temp[key] = float(content)
+                my_key, content = line.split()
+                if my_key in floats:
+                    temp[my_key] = float(content)
                 else:
-                    temp[key] = int(content)
+                    temp[my_key] = int(content)
             f.close()
             self.cases.append(temp)
         pass
@@ -70,4 +70,3 @@ class MultiInstanceEAlgorithm:
         print("STD:", self.std_ratings)
 
         return self.best_ratings, self.worst_ratings, self.avg_ratings, self.std_ratings
-

@@ -16,17 +16,16 @@ class EAlgorithm:
         self.save_info_per_iter: bool = save_info_per_iter
         self.generation = Population(my_map, set_specimens=set_specimens)
 
-
-
     @staticmethod
     def stop(population, old_best):
         if population.gen_num > configuration.values["max_generation"]:  # przekroczenie max liczby generacji
             return 1
         elif population.select_best_specimen().rating > configuration.values["target_value"]:
             return 1
-        # elif (old_best[-1]-old_best[0])/old_best[-1] < 0.05:
-            # jesli przez ostatnie 10 generacji nie poprawilo sie o 5% rating
-            # return 1
+        elif old_best[-1] != 0:  # nie dziel przez 0 xd
+            if (old_best[-1]-old_best[0])/old_best[-1] < 0.05:
+                # jesli przez ostatnie 10 generacji nie poprawilo sie o 5% rating
+                return 1
         else:
             return 0
 

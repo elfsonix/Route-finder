@@ -1,7 +1,6 @@
 import random
 from copy import copy
 from numpy import mean
-from exceptions import *
 from specimen import Specimen
 import configuration
 from map import Map
@@ -29,7 +28,9 @@ class Population:
     # działa
     def mutate_all(self, children: list) -> list:
         for each in children:
-            each.mutate(self.map.max_point)
+            mutate = random.randint(0, 100)
+            if mutate > configuration.values["mutation_probability"]:
+                each.mutate(self.map.max_point)
         return children
 
     @staticmethod
@@ -111,7 +112,7 @@ class Population:
                 allowed_specimen.append(specimen)
         if len(allowed_specimen) == 0:
             # raise NoSpecimenFound
-            return Specimen(0)
+            return Specimen([0])
         allowed_specimen.sort()
         return allowed_specimen.pop(0)  # zwracam najlepszego
 
@@ -128,7 +129,7 @@ class Population:
                 allowed_specimen.append(specimen)
         if len(allowed_specimen) == 0:
             # raise NoSpecimenFound
-            return Specimen(0)
+            return Specimen([0])
         allowed_specimen.sort()
         return allowed_specimen.pop()
 
