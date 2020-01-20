@@ -4,7 +4,7 @@ from numpy import mean
 from specimen import Specimen
 import configuration
 from map import Map
-
+from exceptions import NoSpecimenFound
 
 class Population:
     def __init__(self, my_map: Map, size: int = configuration.values["population_size"], gen_num: int = 0,
@@ -111,8 +111,8 @@ class Population:
             if specimen.is_allowed == 1:
                 allowed_specimen.append(specimen)
         if len(allowed_specimen) == 0:
-            # raise NoSpecimenFound
-            return Specimen([0])
+            raise NoSpecimenFound
+            # return Specimen([0])
         allowed_specimen.sort()
         return allowed_specimen.pop(0)  # zwracam najlepszego
 

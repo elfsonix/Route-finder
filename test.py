@@ -82,4 +82,4 @@ def single_run_test():
 
 if __name__ == "__main__":
     # single_run_test()
-    run_tests(1000)
+    run_tests(100)

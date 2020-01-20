@@ -67,7 +67,7 @@ class EAlgorithm:
                 time.append(i+1)
             except NoSpecimenFound:
                 print("!", end=" ")
-                pass
+                continue
             else:
                 print(".", end=" ")
         return [best_ratings, routes, time]
