@@ -5,6 +5,42 @@ from map import Map
 import configuration as cnfg
 
 
+def case_naming(name):
+    if "default" in name:
+        return "Default case"
+    elif "alpha_big" in name:
+        return "Alpha big"
+    elif "alpha_small" in name:
+        return "Alpha small"
+    elif "rate_big" in name:
+        return "Mutation rate big"
+    elif "rate_small" in name:
+        return "Mutation rate small"
+    elif "size_big" in name:
+        return "Parent group size big"
+    elif "size_small" in name:
+        return "Parent group size small"
+    else:
+        return None
+
+
+def map_naming(name):
+    if "arrangement_bad" in name:
+        return "Bad point arrangement"
+    elif "arrangement_good" in name:
+        return "Good point arrangement"
+    elif "arrangement_middle" in name:
+        return "Average point arrangement"
+    elif "weight_bad" in name:
+        return "Bad weight arrangement"
+    elif "weight_good" in name:
+        return "Good weight arrangement"
+    elif "weight_middle" in name:
+        return "Average weight arrangement"
+    else:
+        return None
+
+
 def run_tests(times: int = 1):
     mea = MultiInstanceEAlgorithm(set_specimen=True)
     best, worst, avg, std = mea.execute_algorithm(times=times)
@@ -12,11 +48,11 @@ def run_tests(times: int = 1):
     map_names = []
     iteretion = 0
     for name in mea.cases_names:
-        case_names.append(name[11:].strip(".txt"))
+        case_names.append(case_naming(name))
     for name in mea.maps_names:
-        map_names.append(name[5:].strip(".txt"))
+        map_names.append(map_naming(name))
     for name1 in map_names:
-        Plotter().barplot(best[iteretion*6:iteretion*6+6], case_names, "Rating", name1)
+        Plotter().barplot(best[iteretion*7:iteretion*7+7], case_names, "Rating", name1)
         iteretion += 1
     # Plotter().barplot(best, bar_names, "Rating", "BEST")
     return best, worst, avg, std
