@@ -25,7 +25,7 @@ class MultiInstanceEAlgorithm:
         self.set_specimen = set_specimen
 
     def load_multiple_points(self) -> None:     # wczytanie roznych map
-        files_list = glob.glob('maps/points*.txt')
+        files_list = glob.glob('tests/maps/*points*.txt')
         self.maps_names = files_list
         for file in files_list:
             self.maps.append(Map(file))
@@ -33,7 +33,7 @@ class MultiInstanceEAlgorithm:
 
     def load_multiple_cases(self) -> None:    # wczytanie roznych konfiguracji
         floats = ["g", "mi", "alpha", "rover_mass", "Ni_max"]
-        files_list = glob.glob('test_cases/*.txt')
+        files_list = glob.glob('tests/cases/*.txt')
         temp: dict = {}
         for file in files_list:
             f = open(file)

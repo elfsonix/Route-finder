@@ -7,19 +7,19 @@ import configuration as cnfg
 
 def case_naming(name):
     if "default" in name:
-        return "Default case"
+        return "Default\ncase"
     elif "alpha_big" in name:
-        return "Alpha big"
+        return "Alpha\nbig"
     elif "alpha_small" in name:
-        return "Alpha small"
+        return "Alpha\nsmall"
     elif "rate_big" in name:
-        return "Mutation rate big"
+        return "Mutation\nrate\nbig"
     elif "rate_small" in name:
-        return "Mutation rate small"
+        return "Mutation\nrate\nsmall"
     elif "size_big" in name:
-        return "Parent group size big"
+        return "Parent\ngroup\nsize\nbig"
     elif "size_small" in name:
-        return "Parent group size small"
+        return "Parent\ngroup\nsize\nsmall"
     else:
         return None
 
@@ -53,9 +53,10 @@ def run_tests(times: int = 1):
         map_names.append(map_naming(name))
     for name1 in map_names:
         Plotter().barplot(best[iteretion*7:iteretion*7+7], case_names, "Rating", name1)
+        print(iteretion, "eee?: ", best[iteretion*7:iteretion*7+7])
         iteretion += 1
     # Plotter().barplot(best, bar_names, "Rating", "BEST")
-    return best, worst, avg, std
+    return None
 
 
 def single_run_test():
@@ -64,10 +65,10 @@ def single_run_test():
     ea = EAlgorithm(alg_map, save_info_per_iter=True)
     ea.run()
     ea.plot_per_iteration()
-    print(ea.generation.select_best_allowed_specimen().rating)
+    print("Single run:", ea.generation.select_best_allowed_specimen().rating)
     pass
 
 
 if __name__ == "__main__":
-    single_run_test()
+    # single_run_test()
     run_tests(100)

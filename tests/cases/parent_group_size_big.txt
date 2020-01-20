@@ -11,6 +11,6 @@ base_z 0
 init_fuel_need 10
 fuel 1000
 max_generation 99
-mutation_rate 70
-parent_group_size 50
+mutation_probability 50
+parent_group_size 70
 Ni_max 1

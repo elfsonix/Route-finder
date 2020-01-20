@@ -19,15 +19,17 @@ class EAlgorithm:
     @staticmethod
     def stop(population, old_best):
         if population.gen_num > configuration.values["max_generation"]:  # przekroczenie max liczby generacji
-            return 1
+            return True
         elif population.select_best_specimen().rating > configuration.values["target_value"]:
-            return 1
+            return True
         elif old_best[-1] != 0:  # nie dziel przez 0 xd
-            if (old_best[-1]-old_best[0])/old_best[-1] < 0.05:
+            if (old_best[-1]-old_best[0])/old_best[-1] < 0.02:
                 # jesli przez ostatnie 10 generacji nie poprawilo sie o 5% rating
-                return 1
+                return True
+            else:
+                return False
         else:
-            return 0
+            return False
 
     def run(self):
         self.generation.rate_all()
@@ -72,7 +74,7 @@ class EAlgorithm:
 
     def plot_per_iteration(self):
         lst = [i for i in (range(len(self.best_per_iter)))]
-        print("lst:", lst)
+        # print("lst:", lst)
         Plotter().line_plot(lst, self.best_per_iter)
         Plotter().line_plot(lst, self.best_allowed_per_iter)
         Plotter().line_plot(lst, self.worst_per_iter)

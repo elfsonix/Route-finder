@@ -160,7 +160,7 @@ class Population:
         self.gen_num += 1
         return None
 
-    def load_multiple_specimens(self, file: str = "start_specimens/specimens.txt"):
+    def load_multiple_specimens(self, file: str = "tests/start_specimens/specimens.txt"):
         f = open(file)
         for line in f:
             temp = []
