@@ -29,7 +29,7 @@ class Population:
     def mutate_all(self, children: list) -> list:
         for each in children:
             mutate = random.randint(0, 100)
-            if mutate > configuration.values["mutation_probability"]:
+            if mutate <= configuration.values["mutation_probability"]:
                 each.mutate(self.map.max_point)
         return children
 
