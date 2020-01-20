@@ -23,7 +23,7 @@ class EAlgorithm:
         elif population.select_best_specimen().rating > configuration.values["target_value"]:
             return True
         elif old_best[-1] != 0:  # nie dziel przez 0 xd
-            if (old_best[-1]-old_best[0])/old_best[-1] < 0.02:
+            if (old_best[-1]-old_best[0])/old_best[-1] < 0.1:
                 # jesli przez ostatnie 10 generacji nie poprawilo sie o 5% rating
                 return True
             else:

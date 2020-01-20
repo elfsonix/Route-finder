@@ -43,19 +43,30 @@ def map_naming(name):
 
 def run_tests(times: int = 1):
     mea = MultiInstanceEAlgorithm(set_specimen=True)
-    best, worst, avg, std = mea.execute_algorithm(times=times)
+    mea.execute_algorithm(times=times)
+    best, worst, avg, std = mea.get_ratings()
+    best_len, worst_len, avg_len, std_len = mea.get_ratings_lengths()
     case_names = []
     map_names = []
+
     iteretion = 0
     for name in mea.cases_names:
         case_names.append(case_naming(name))
     for name in mea.maps_names:
         map_names.append(map_naming(name))
     for name1 in map_names:
-        Plotter().barplot(best[iteretion*7:iteretion*7+7], case_names, "Rating", name1)
+        Plotter().barplot_threeway(best[iteretion*7:iteretion*7+7],
+                                   avg[iteretion*7:iteretion*7+7],
+                                   worst[iteretion*7:iteretion*7+7],
+                                   case_names, "Rating", name1, ["Best", "Avg", "Worst"])
+
+        # Plotter().scatter_plot(best[iteretion*7:iteretion*7+7],
+        #                        best_len[iteretion*7:iteretion*7+7],
+        #                        "Ratings", "Genome lengths", name1)
+
         print(iteretion, "eee?: ", best[iteretion*7:iteretion*7+7])
         iteretion += 1
-    # Plotter().barplot(best, bar_names, "Rating", "BEST")
+
     return None
 
 
@@ -71,4 +82,4 @@ def single_run_test():
 
 if __name__ == "__main__":
     # single_run_test()
-    run_tests(100)
+    run_tests(1000)

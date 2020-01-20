@@ -138,3 +138,19 @@ class Plotter(abc.ABC):
         fig.tight_layout()
 
         plt.show()
+
+    @staticmethod
+    def barplot_threeway(data_high, data_avg, data_low, xlabels="OX", ylabel="OY", title="", legend=["", "", ""]):
+        ind = np.arange(len(data_high))
+        fig, ax = plt.subplots()
+        plt1 = ax.bar(ind, data_high, width=0.5)
+        plt2 = ax.bar(ind, data_avg, width=0.5)
+        plt3 = ax.bar(ind, data_low, width=0.5)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xticks(ind)
+        ax.set(ylim=(0, 120))
+        ax.set_xticklabels(xlabels)
+        ax.legend((plt1[0], plt2[0], plt3[0]), (legend[0], legend[1], legend[2]))
+        fig.tight_layout()
+        plt.show()

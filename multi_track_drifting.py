@@ -14,6 +14,10 @@ class MultiInstanceEAlgorithm:
         self.worst_ratings = []
         self.avg_ratings = []
         self.std_ratings = []
+        self.best_ratings_len = []
+        self.worst_ratings_len = []
+        self.avg_ratings_len = []
+        self.std_ratings_len = []
         self.maps = []
         self.cases = []
         self.specimens = []
@@ -56,11 +60,18 @@ class MultiInstanceEAlgorithm:
                 configuration.values = config_it
                 ea = EAlgorithm(maps_in, set_specimens=self.set_specimen)
                 [best_ratings, routes, time] = ea.run_multiple_times(times=times)
-                best_ratings.sort()
+                best_ratings, routes = (list(t) for t in zip(*sorted(zip(best_ratings, routes))))
+                route_lengths = []
+                for route in routes:
+                    route_lengths.append(len(route))
                 self.best_ratings.append(best_ratings[-1])
                 self.worst_ratings.append(best_ratings[0])
                 self.avg_ratings.append(mean(best_ratings))
                 self.std_ratings.append(std(best_ratings))
+                self.best_ratings_len.append(route_lengths[-1])
+                self.worst_ratings_len.append(route_lengths[0])
+                self.avg_ratings_len.append(mean(route_lengths))
+                self.std_ratings_len.append(std(route_lengths))
                 print()
             print()
         print()
@@ -69,4 +80,8 @@ class MultiInstanceEAlgorithm:
         print("AVERAGE:", self.avg_ratings)
         print("STD:", self.std_ratings)
 
+    def get_ratings(self):
         return self.best_ratings, self.worst_ratings, self.avg_ratings, self.std_ratings
+
+    def get_ratings_lengths(self):
+        return self.best_ratings_len, self.worst_ratings_len, self.avg_ratings_len, self.std_ratings_len
