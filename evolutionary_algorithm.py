@@ -2,7 +2,7 @@ from map import Map
 from population import Population
 import configuration
 from exceptions import *
-from output_presentation import Plotter
+from plotting import Plotter
 
 
 class EAlgorithm:
@@ -25,8 +25,8 @@ class EAlgorithm:
         elif population.select_best_specimen().rating > configuration.values["target_value"]:
             return True
         elif old_best[-1] != 0:  # nie dziel przez 0 xd
-            if (old_best[-1]-old_best[0])/old_best[-1] < 0.1:
-                # jesli przez ostatnie 10 generacji nie poprawilo sie o 5% rating
+            if (old_best[-1]-old_best[0])/old_best[-1] < 0.05:
+                # jesli przez ostatnie 10 generacji rating nie poprawil sie o 5%
                 return True
             else:
                 return False
@@ -84,3 +84,19 @@ class EAlgorithm:
         Plotter().line_plot(lst, self.worst_allowed_per_iter, plot_title="Worst allowed")
         Plotter().line_plot(lst, self.avg_per_iter, plot_title="Average")
         Plotter().line_plot(lst, self.avg_allwowed_per_iter, plot_title="Average allowed")
+        Plotter().multiline_plot(lst,
+                                 self.best_allowed_per_iter,
+                                 self.avg_allwowed_per_iter,
+                                 self.worst_allowed_per_iter,
+                                 x_axis_name="Iteration",
+                                 y_axis_name="Rating",
+                                 legend=["Best", "Average", "Worst"],
+                                 plot_title="Allowed ratings")
+        Plotter().multiline_plot(lst,
+                                 self.best_per_iter,
+                                 self.avg_per_iter,
+                                 self.worst_per_iter,
+                                 x_axis_name="Iteration",
+                                 y_axis_name="Rating",
+                                 legend=["Best", "Average", "Worst"],
+                                 plot_title="All ratings")

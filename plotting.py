@@ -28,6 +28,17 @@ class Plotter(abc.ABC):
         return None
 
     @staticmethod
+    def multiline_plot(x_data, y1_data, y2_data, y3_data, x_axis_name="OX", y_axis_name="OY", plot_title="Line Plot",
+                       legend=["Dataset 1", "Dataset 2", "Dataset 3"]):
+        fig, ax = plt.subplots()
+        plt1 = ax.plot(x_data, y1_data)
+        plt2 = ax.plot(x_data, y2_data)
+        plt3 = ax.plot(x_data, y3_data)
+        ax.set(xlabel=x_axis_name, ylabel=y_axis_name, title=plot_title)
+        ax.legend((plt1[0], plt2[0], plt3[0]), (legend[0], legend[1], legend[2]))
+        plt.show()
+
+    @staticmethod
     def histogram(data, x_axis_name="OX", y_axis_name="OY", plot_title="Histogram Plot") -> None:
         data.sort()
         fig, ax = plt.subplots()

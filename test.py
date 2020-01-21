@@ -1,5 +1,5 @@
 from multi_track_drifting import MultiInstanceEAlgorithm
-from output_presentation import Plotter
+from plotting import Plotter
 from evolutionary_algorithm import EAlgorithm
 from map import Map
 import configuration as cnfg
@@ -72,11 +72,13 @@ def run_tests(times: int = 1):
 
 def single_run_test():
     cnfg.load_config_file()
-    alg_map = Map("tests/maps/1_points_arrangement_bad.txt")
+    alg_map = Map()
     ea = EAlgorithm(alg_map, set_specimens=True, save_info_per_iter=True)
     ea.run()
     ea.plot_per_iteration()
-    print("Single run:", ea.generation.select_best_allowed_specimen().rating)
+    print("Single run best rating:\t", ea.generation.select_best_allowed_specimen().rating)
+    print("Single run worst rating:\t", ea.generation.select_worst_allowed_specimen().rating)
+    print("Single run average rating:\t", ea.generation.get_average_allowed_specimen_rating())
     pass
 
 
@@ -93,16 +95,13 @@ def maps_test():
             z.append(d["z"])
             print(".", end=" ")
         print("#")
-        print(x)
-        print(y)
         Plotter.scatter_plot(x, y)
         x = []
         y = []
         z = []
 
 
-
 if __name__ == "__main__":
-    # single_run_test()
+    single_run_test()
     # run_tests(10)
-    maps_test()
+    # maps_test()

@@ -1,7 +1,7 @@
 from evolutionary_algorithm import EAlgorithm
 from map import Map
 import configuration
-from output_presentation import Plotter
+from plotting import Plotter
 from multi_track_drifting import MultiInstanceEAlgorithm
 from gui import GUI
 

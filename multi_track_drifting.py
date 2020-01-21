@@ -1,6 +1,6 @@
 from numpy import *
 import population
-import output_presentation
+import plotting
 import configuration
 from map import Map
 import glob

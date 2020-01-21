@@ -1,7 +1,7 @@
 from evolutionary_algorithm import EAlgorithm
 from multi_track_drifting import MultiInstanceEAlgorithm
 from map import Map
-from output_presentation import Plotter
+from plotting import Plotter
 import test
 
 
@@ -25,7 +25,7 @@ class GUI:  # TODO całe GUI
         elif choice == "2":
             self.multi_instance_menu()
         elif choice == "3":
-            best, worst, avg, std = test.run_tests()
+            self.testing_menu()
         elif choice == "q" or "Q":
             pass
         else:
@@ -64,5 +64,23 @@ class GUI:  # TODO całe GUI
         elif choice == "R" or "r":
             self.main_menu()
         else:
-            pass
+            self.custom_instance_menu()
         pass
+
+    def testing_menu(self):
+        print("Testy:")
+        print("1. Test pojedynczego uruchomienia algorytmu")
+        print("2. Test wielokrotnego uruchomienia algorytmu")
+        print("3. Wizualizacja map używanych w testach")
+        print("R - Powrót")
+        choice = input()
+        if choice == "1":
+            test.single_run_test()
+        elif choice == "2":
+            test.run_tests()
+        elif choice == "3":
+            test.maps_test()
+        elif choice == "R" or "r":
+            self.main_menu()
+        else:
+            self.testing_menu()
