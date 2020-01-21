@@ -64,7 +64,7 @@ def run_tests(times: int = 1):
         #                        best_len[iteretion*7:iteretion*7+7],
         #                        "Ratings", "Genome lengths", name1)
 
-        print(iteretion, "eee?: ", best[iteretion*7:iteretion*7+7])
+        print(iteretion, "baprlot values", best[iteretion*7:iteretion*7+7])
         iteretion += 1
 
     return None
@@ -72,14 +72,37 @@ def run_tests(times: int = 1):
 
 def single_run_test():
     cnfg.load_config_file()
-    alg_map = Map()
-    ea = EAlgorithm(alg_map, save_info_per_iter=True)
+    alg_map = Map("tests/maps/1_points_arrangement_bad.txt")
+    ea = EAlgorithm(alg_map, set_specimens=True, save_info_per_iter=True)
     ea.run()
     ea.plot_per_iteration()
     print("Single run:", ea.generation.select_best_allowed_specimen().rating)
     pass
 
 
+def maps_test():
+    mea = MultiInstanceEAlgorithm()
+    mea.load_multiple_points()
+    x = []
+    y = []
+    z = []
+    for _map in mea.maps:
+        for d in _map.map:
+            x.append(d["x"])
+            y.append(d["y"])
+            z.append(d["z"])
+            print(".", end=" ")
+        print("#")
+        print(x)
+        print(y)
+        Plotter.scatter_plot(x, y)
+        x = []
+        y = []
+        z = []
+
+
+
 if __name__ == "__main__":
     # single_run_test()
-    run_tests(100)
+    # run_tests(10)
+    maps_test()

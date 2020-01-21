@@ -50,23 +50,16 @@ class Plotter(abc.ABC):
         rect_histx = [left, bottom + height + spacing, width, 0.2]
         rect_histy = [left + width + spacing, bottom, 0.2, height]
 
-        # plt.figure(figsize=(8, 8))
-
         ax_scatter = plt.axes(rect_scatter)
         ax_scatter.tick_params(direction='in', top=True, right=True)
         ax_histx = plt.axes(rect_histx)
         ax_histx.tick_params(direction='in', labelbottom=False)
         ax_histy = plt.axes(rect_histy)
         ax_histy.tick_params(direction='in', labelleft=False)
-
-        # the scatter plot:
         ax_scatter.scatter(x_data, y_data)
 
-        # now determine nice limits by hand:
         binwidth = 0.25
         lim = np.ceil(np.abs([x_data, y_data]).max() / binwidth) * binwidth
-        # ax_scatter.set_xlim((-lim, lim))
-        # ax_scatter.set_ylim((-lim, lim))
 
         bins = np.arange(-lim, lim + binwidth, binwidth)
         ax_histx.hist(x_data, bins=bins, )
@@ -105,35 +98,11 @@ class Plotter(abc.ABC):
                         label=legend[2])
         rects4 = ax.bar(ind + width * 3 / 2, data_4, width,
                         label=legend[3])
-
-        # Add some text for labels, title and custom x-axis tick labels, etc.
         ax.set_ylabel(ylabel)
         ax.set_title(title)
         ax.set_xticks(ind)
         # ax.set_xticklabels(xlabels)
         ax.legend()
-
-        # def autolabel(rects, xpos='center'):
-        #     """
-        #     Attach a text label above each bar in *rects*, displaying its height.
-        #
-        #     *xpos* indicates which side to place the text w.r.t. the center of
-        #     the bar. It can be one of the following {'center', 'right', 'left'}.
-        #     """
-        #
-        #     ha = {'center': 'center', 'right': 'left', 'left': 'right'}
-        #     offset = {'center': 0, 'right': 1, 'left': -1}
-        #
-        #     for rect in rects:
-        #         height = rect.get_height()
-        #         ax.annotate('{}'.format(height),
-        #                     xy=(rect.get_x() + rect.get_width() / 2, height),
-        #                     xytext=(offset[xpos] * 3, 3),  # use 3 points offset
-        #                     textcoords="offset points",  # in both directions
-        #                     ha=ha[xpos], va='bottom')
-
-        # autolabel(rects1, "left")
-        # autolabel(rects2, "right")
 
         fig.tight_layout()
 
@@ -141,16 +110,20 @@ class Plotter(abc.ABC):
 
     @staticmethod
     def barplot_threeway(data_high, data_avg, data_low, xlabels="OX", ylabel="OY", title="", legend=["", "", ""]):
+
         ind = np.arange(len(data_high))
         fig, ax = plt.subplots()
+
         plt1 = ax.bar(ind, data_high, width=0.5)
         plt2 = ax.bar(ind, data_avg, width=0.5)
         plt3 = ax.bar(ind, data_low, width=0.5)
+
         ax.set_ylabel(ylabel)
         ax.set_title(title)
         ax.set_xticks(ind)
         ax.set(ylim=(0, 120))
         ax.set_xticklabels(xlabels)
         ax.legend((plt1[0], plt2[0], plt3[0]), (legend[0], legend[1], legend[2]))
+
         fig.tight_layout()
         plt.show()

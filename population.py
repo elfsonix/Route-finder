@@ -6,15 +6,31 @@ import configuration
 from map import Map
 from exceptions import NoSpecimenFound
 
+
 class Population:
-    def __init__(self, my_map: Map, size: int = configuration.values["population_size"], gen_num: int = 0,
+    def __init__(self, my_map: Map, size: int = configuration.values["population_size"],
                  set_specimens: bool = False) -> None:
         self.size = size
-        self.gen_num = gen_num                                  # aktualna generacja
+        self.gen_num = 0                                  # aktualna generacja
         # wstepna inicjalizacja dla t=0
         self.current_generation: list = []                            # generacja obecna
         self.map = my_map
+        self.set_specimens: bool = set_specimens
         if set_specimens:
+            self.load_multiple_specimens()
+        else:
+            temp_list = []
+            for j in range(0, configuration.values["population_size"]):
+                for i in range(random.randrange(1, self.map.max_point, 1)):      # tworzę losowo generację początkową
+                    temp_list.append(random.randrange(1, self.map.max_point, 1))
+                self.current_generation.append(Specimen(temp_list))
+                temp_list = []
+        self.rate_all()
+
+    def reset(self):
+        self.current_generation = []
+        self.gen_num = 0
+        if self.set_specimens:
             self.load_multiple_specimens()
         else:
             temp_list = []

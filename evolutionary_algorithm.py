@@ -14,7 +14,9 @@ class EAlgorithm:
         self.best_allowed_per_iter = []
         self.worst_allowed_per_iter = []
         self.save_info_per_iter: bool = save_info_per_iter
-        self.generation = Population(my_map, set_specimens=set_specimens)
+        self.my_map = my_map
+        self.set_specimens = set_specimens
+        self.generation = Population(self.my_map, set_specimens=self.set_specimens)
 
     @staticmethod
     def stop(population, old_best):
@@ -59,6 +61,7 @@ class EAlgorithm:
         best_ratings = []
         time = []
         for i in range(times):
+            self.generation.reset()
             self.run()
             final_population = self.generation
             try:
@@ -69,15 +72,15 @@ class EAlgorithm:
                 print("!", end=" ")
                 continue
             else:
-                print(".", end=" ")
+                print(self.generation.gen_num, end=" ")
         return [best_ratings, routes, time]
 
     def plot_per_iteration(self):
         lst = [i for i in (range(len(self.best_per_iter)))]
         # print("lst:", lst)
-        Plotter().line_plot(lst, self.best_per_iter)
-        Plotter().line_plot(lst, self.best_allowed_per_iter)
-        Plotter().line_plot(lst, self.worst_per_iter)
-        Plotter().line_plot(lst, self.worst_allowed_per_iter)
-        Plotter().line_plot(lst, self.avg_per_iter)
-        Plotter().line_plot(lst, self.avg_allwowed_per_iter)
+        Plotter().line_plot(lst, self.best_per_iter, plot_title="Best")
+        Plotter().line_plot(lst, self.best_allowed_per_iter, plot_title="Best allowed")
+        Plotter().line_plot(lst, self.worst_per_iter, plot_title="Worst")
+        Plotter().line_plot(lst, self.worst_allowed_per_iter, plot_title="Worst allowed")
+        Plotter().line_plot(lst, self.avg_per_iter, plot_title="Average")
+        Plotter().line_plot(lst, self.avg_allwowed_per_iter, plot_title="Average allowed")
