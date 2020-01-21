@@ -55,8 +55,9 @@ class Specimen:
                 profit += my_map.get_profit(current_point)  # zwiększenie zysku
                 cost += configuration.values["init_fuel_need"]  # dodanie kosztu rozpoczęcia ruchu
                 points_covered.append(current_point)
-            self.is_route_allowed(cost)
+            # self.is_route_allowed(cost)  # nie ma potrzeby 2 razy
         cost += my_map.calc_fuel_usage(weight, previous_point, 0)
         self.is_route_allowed(cost)
+        cost -= configuration.values["fuel"]  # kara tylko za nadmiar paliwa
         # obliczenie wartości funkcji optymalizacji
         self.rating = profit - configuration.values["alpha"] * (0 if self.is_allowed else cost)
