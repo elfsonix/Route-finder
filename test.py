@@ -93,7 +93,7 @@ def run_test_percentage(times: int = 1):
         # Plotter().scatter_plot(best[iteretion*7:iteretion*7+7],
         #                        best_len[iteretion*7:iteretion*7+7],
         #                        "Ratings", "Genome lengths", name1)
-        Plotter().multiline_plot(x_data, best[10*iteretion:10*iteretion + 10],
+        Plotter().multiline_plot(x_data, best[11*iteretion:11*iteretion + 10],
                                  best[10*iteretion + 10:10*iteretion + 20],
                                  best[10*iteretion + 20:10*iteretion + 30],
                                  x_axis_name="Default parameter pecentage",
@@ -141,4 +141,5 @@ if __name__ == "__main__":
     # single_run_test()
     # run_tests(100)
     # maps_test()
-    run_test_percentage(10)
+    # run_test_percentage(1)
+    pass

@@ -77,8 +77,8 @@ class EAlgorithm:
 
     def plot_per_iteration(self):
         lst = [i for i in (range(len(self.best_per_iter)))]
-        print("lst:", lst)
-        print(self.best_allowed_per_iter)
+        # print("lst:", lst)
+        print("Best allowed per iteration", self.best_allowed_per_iter)
         # Plotter().line_plot(lst, self.best_per_iter, plot_title="Best")
         # Plotter().line_plot(lst, self.best_allowed_per_iter, plot_title="Best allowed")
         # Plotter().line_plot(lst, self.worst_per_iter, plot_title="Worst")

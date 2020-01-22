@@ -3,6 +3,7 @@ from multi_track_drifting import MultiInstanceEAlgorithm
 from map import Map
 from plotting import Plotter
 import test
+import configuration
 
 
 class GUI:  # TODO całe GUI
@@ -12,6 +13,7 @@ class GUI:  # TODO całe GUI
         print("Jacek Lichwa, Karolina Świerczek, Sonia Wittek")
         print()
         print("Wprowadź znak aby wybrać opcję z listy")
+        configuration.load_config_file()
         pass
 
     def main_menu(self):
@@ -41,10 +43,10 @@ class GUI:  # TODO całe GUI
             n = input()
             ea_map = Map()
             ea = EAlgorithm(ea_map)
-            [routes, ratings, time] = ea.run_multiple_times(int(n))
+            [ratings, routes, time] = ea.run_multiple_times(int(n))
             print()
             for i in range(len(routes)):
-                print("TIME", time[i], "RATING", ratings[i], "ROUTE", routes[i])
+                print("TIME", time[i], "\tRATING", ratings[i], "\tROUTE", routes[i])
         pass
 
     def custom_instance_menu(self):
@@ -55,10 +57,11 @@ class GUI:  # TODO całe GUI
         if choice == "1":
             ea_map = Map()
             ea = EAlgorithm(ea_map)
-            result = ea.run()
-            for elem in result.current_generation:
+            ea.run()
+            for elem in ea.generation.current_generation:
                 print("Specimen:", elem.route, "rating:", elem.rating, elem.is_allowed)
-            print("BEST:", result.select_best_allowed_specimen().route, result.select_best_allowed_specimen().rating)
+            print("BEST:", ea.generation.select_best_allowed_specimen().route,
+                  ea.generation.select_best_allowed_specimen().rating)
         elif choice == "R" or "r":
             self.main_menu()
         else:
@@ -75,7 +78,7 @@ class GUI:  # TODO całe GUI
         if choice == "1":
             test.single_run_test()
         elif choice == "2":
-            test.run_tests()
+            test.run_tests(100)
         elif choice == "3":
             test.maps_test()
         elif choice == "R" or "r":
