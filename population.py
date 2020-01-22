@@ -127,8 +127,8 @@ class Population:
             if specimen.is_allowed == 1:
                 allowed_specimen.append(specimen)
         if len(allowed_specimen) == 0:
-            raise NoSpecimenFound
-            # return Specimen([0])
+            # raise NoSpecimenFound
+            return Specimen([0])
         allowed_specimen.sort()
         return allowed_specimen.pop(0)  # zwracam najlepszego
 

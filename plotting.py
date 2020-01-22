@@ -32,7 +32,6 @@ class Plotter(abc.ABC):
     @staticmethod
     def multiline_plot(x_data, y1_data, y2_data, y3_data, x_axis_name="OX", y_axis_name="OY", plot_title="Line Plot",
                        legend=["Dataset 1", "Dataset 2", "Dataset 3"]):
-
         fig, ax = plt.subplots()
         plt.grid(True)
         plt1 = ax.plot(x_data, y1_data)
@@ -40,6 +39,25 @@ class Plotter(abc.ABC):
         plt3 = ax.plot(x_data, y3_data)
         ax.set(xlabel=x_axis_name, ylabel=y_axis_name, title=plot_title)
         ax.legend((plt1[0], plt2[0], plt3[0]), (legend[0], legend[1], legend[2]))
+        plt.show()
+
+    @staticmethod
+    def multiline_plot_extended(x_data, y_data, x_axis_name="OX", y_axis_name="OY",
+                                plot_title="Line Plot",
+                                legend=["Dataset 1", "Dataset 2", "Dataset 3",
+                                        "Dataset 4", "Dataset 5", "Dataset 6", "Dataset 7"]):
+        fig, ax = plt.subplots()
+        plt.grid(True)
+        plt1 = ax.plot(x_data, y_data[0])
+        plt2 = ax.plot(x_data, y_data[1])
+        plt3 = ax.plot(x_data, y_data[2])
+        plt4 = ax.plot(x_data, y_data[3])
+        plt5 = ax.plot(x_data, y_data[4])
+        plt6 = ax.plot(x_data, y_data[5])
+        plt7 = ax.plot(x_data, y_data[6])
+        ax.set(xlabel=x_axis_name, ylabel=y_axis_name, title=plot_title)
+        ax.legend((plt1[0], plt2[0], plt3[0], plt4[0], plt5[0], plt6[0], plt7[0]),
+                  (legend[0], legend[1], legend[2], legend[3], legend[4], legend[5], legend[6]))
         plt.show()
 
     @staticmethod
@@ -125,7 +143,6 @@ class Plotter(abc.ABC):
 
     @staticmethod
     def barplot_threeway(data_high, data_avg, data_low, xlabels="OX", ylabel="OY", title="", legend=["", "", ""]):
-
         ind = np.arange(len(data_high))
         fig, ax = plt.subplots()
         plt.grid(True)

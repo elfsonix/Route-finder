@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from numpy import *
 import population
 import plotting
@@ -79,6 +81,39 @@ class MultiInstanceEAlgorithm:
         print("WORST:", self.worst_ratings)
         print("AVERAGE:", self.avg_ratings)
         print("STD:", self.std_ratings)
+
+    def execute_precengage_values(self, times: int = 100):
+        configuration.load_config_file()
+        nonmutable_config = deepcopy(configuration.values)
+        iterator = [0.1*x for x in range(5, 16)]
+        print("it", len(iterator))
+        for maps in self.maps:
+            for value in iterator:
+                configuration.values["alpha"] = deepcopy(nonmutable_config["alpha"])
+                configuration.values["alpha"] = value*configuration.values["alpha"]
+                ea = EAlgorithm(maps, set_specimens=self.set_specimen)
+                [best_ratings, routes, time] = ea.run_multiple_times(times=times)
+                best_ratings, routes = (list(t) for t in zip(*sorted(zip(best_ratings, routes))))
+                print(len(best_ratings))
+                self.best_ratings.append(best_ratings[-1])
+            print("*")
+            for value in iterator:
+                configuration.values["mutation_probability"] = deepcopy(nonmutable_config["mutation_probability"])
+                configuration.values["mutation_probability"] = value*configuration.values["mutation_probability"]
+                ea = EAlgorithm(maps, set_specimens=self.set_specimen)
+                [best_ratings, routes, time] = ea.run_multiple_times(times=times)
+                best_ratings, routes = (list(t) for t in zip(*sorted(zip(best_ratings, routes))))
+                self.best_ratings.append(best_ratings[-1])
+            print("*")
+            for value in iterator:
+                configuration.values["parent_group_size"] = deepcopy(nonmutable_config["parent_group_size"])
+                configuration.values["parent_group_size"] = value*configuration.values["parent_group_size"]
+                ea = EAlgorithm(maps, set_specimens=self.set_specimen)
+                [best_ratings, routes, time] = ea.run_multiple_times(times=times)
+                best_ratings, routes = (list(t) for t in zip(*sorted(zip(best_ratings, routes))))
+                self.best_ratings.append(best_ratings[-1])
+            print("*")
+        print("#")
 
     def get_ratings(self):
         return self.best_ratings, self.worst_ratings, self.avg_ratings, self.std_ratings

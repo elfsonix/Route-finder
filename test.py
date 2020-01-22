@@ -48,7 +48,7 @@ def run_tests(times: int = 1):
     best_len, worst_len, avg_len, std_len = mea.get_ratings_lengths()
     case_names = []
     map_names = []
-
+    y_data = []
     iteretion = 0
     for name in mea.cases_names:
         case_names.append(case_naming(name))
@@ -59,16 +59,50 @@ def run_tests(times: int = 1):
                                    avg[iteretion*7:iteretion*7+7],
                                    worst[iteretion*7:iteretion*7+7],
                                    case_names, "Rating", name1, ["Best", "Avg", "Worst"])
-
         # Plotter().scatter_plot(best[iteretion*7:iteretion*7+7],
         #                        best_len[iteretion*7:iteretion*7+7],
         #                        "Ratings", "Genome lengths", name1)
-
+        y_data.append(best[iteretion*7:iteretion*7+7])
         print(iteretion, "baprlot values", best[iteretion*7:iteretion*7+7])
         iteretion += 1
-
     return None
 
+
+def run_test_percentage(times: int = 1):
+    mea = MultiInstanceEAlgorithm(set_specimen=True)
+    mea.execute_precengage_values(times)
+    best, worst, avg, std = mea.get_ratings()
+    # best_len, worst_len, avg_len, std_len = mea.get_ratings_lengths()
+    case_names = []
+    map_names = []
+    # y_data = []
+    x_data = [10*x for x in range(5, 15)]
+    print(len(best)/11)
+    iteretion = 0
+    # print("best len", len(best))
+    for name in mea.cases_names:
+        case_names.append(case_naming(name))
+    for name in mea.maps_names:
+        map_names.append(map_naming(name))
+    for name1 in map_names:
+        print("XXX")
+        # Plotter().barplot_threeway(best[iteretion * 7:iteretion * 7 + 7],
+        #                            avg[iteretion * 7:iteretion * 7 + 7],
+        #                            worst[iteretion * 7:iteretion * 7 + 7],
+        #                            case_names, "Rating", name1, ["Best", "Avg", "Worst"])
+        # Plotter().scatter_plot(best[iteretion*7:iteretion*7+7],
+        #                        best_len[iteretion*7:iteretion*7+7],
+        #                        "Ratings", "Genome lengths", name1)
+        Plotter().multiline_plot(x_data, best[10*iteretion:10*iteretion + 10],
+                                 best[10*iteretion + 10:10*iteretion + 20],
+                                 best[10*iteretion + 20:10*iteretion + 30],
+                                 x_axis_name="Default parameter pecentage",
+                                 y_axis_name="Rating",
+                                 plot_title=name1,
+                                 legend=["alpha", "mutation_probability", "parent_group_size"])
+        # y_data.append(best[iteretion * 7:iteretion * 7 + 7])
+        # print(iteretion, "baprlot values", best[iteretion * 7:iteretion * 7 + 7])
+        iteretion += 1
 
 def single_run_test():
     cnfg.load_config_file()
@@ -105,5 +139,6 @@ def maps_test():
 
 if __name__ == "__main__":
     # single_run_test()
-    run_tests(1000)
+    # run_tests(100)
     # maps_test()
+    run_test_percentage(10)
