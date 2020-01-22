@@ -5,10 +5,6 @@ values: dict = {                        # default algorithm parameters
         "g": 3.71,                      # gravitational acceleration [m/s^2]
         "mi": 0.5,                      # dynamic friction coefficient
         "rover_mass": 20.2,             # rover's initial mass in kilograms
-        "base_id": 0,                   # base point number
-        "base_x": 0,                    # base coordinates in x, y, z
-        "base_y": 0,
-        "base_z": 0,
         "init_fuel_need": 10,           # initial fuel needed to start moving
         "fuel": 1000,                   # initial fuel value
         "max_generation": 99,           # max number of generations

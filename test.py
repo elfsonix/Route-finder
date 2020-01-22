@@ -7,19 +7,19 @@ import configuration as cnfg
 
 def case_naming(name):
     if "default" in name:
-        return "Default\ncase"
+        return "G0"
     elif "alpha_big" in name:
-        return "Alpha\nbig"
+        return "G1"
     elif "alpha_small" in name:
-        return "Alpha\nsmall"
-    elif "rate_big" in name:
-        return "Mutation\nrate\nbig"
-    elif "rate_small" in name:
-        return "Mutation\nrate\nsmall"
+        return "G2"
+    elif "probability_big" in name:
+        return "G3"
+    elif "probability_small" in name:
+        return "G4"
     elif "size_big" in name:
-        return "Parent\ngroup\nsize\nbig"
+        return "G5"
     elif "size_small" in name:
-        return "Parent\ngroup\nsize\nsmall"
+        return "G6"
     else:
         return None
 
@@ -29,8 +29,8 @@ def map_naming(name):
         return "Bad point arrangement"
     elif "arrangement_good" in name:
         return "Good point arrangement"
-    elif "arrangement_middle" in name:
-        return "Average point arrangement"
+    elif "default" in name:
+        return "Default map"
     elif "weight_bad" in name:
         return "Bad weight arrangement"
     elif "weight_good" in name:
@@ -95,6 +95,8 @@ def maps_test():
             z.append(d["z"])
             print(".", end=" ")
         print("#")
+        print(x)
+        print(y)
         Plotter.scatter_plot(x, y)
         x = []
         y = []
@@ -102,6 +104,6 @@ def maps_test():
 
 
 if __name__ == "__main__":
-    single_run_test()
-    # run_tests(10)
+    # single_run_test()
+    run_tests(1000)
     # maps_test()

@@ -77,13 +77,14 @@ class EAlgorithm:
 
     def plot_per_iteration(self):
         lst = [i for i in (range(len(self.best_per_iter)))]
-        # print("lst:", lst)
-        Plotter().line_plot(lst, self.best_per_iter, plot_title="Best")
-        Plotter().line_plot(lst, self.best_allowed_per_iter, plot_title="Best allowed")
-        Plotter().line_plot(lst, self.worst_per_iter, plot_title="Worst")
-        Plotter().line_plot(lst, self.worst_allowed_per_iter, plot_title="Worst allowed")
-        Plotter().line_plot(lst, self.avg_per_iter, plot_title="Average")
-        Plotter().line_plot(lst, self.avg_allwowed_per_iter, plot_title="Average allowed")
+        print("lst:", lst)
+        print(self.best_allowed_per_iter)
+        # Plotter().line_plot(lst, self.best_per_iter, plot_title="Best")
+        # Plotter().line_plot(lst, self.best_allowed_per_iter, plot_title="Best allowed")
+        # Plotter().line_plot(lst, self.worst_per_iter, plot_title="Worst")
+        # Plotter().line_plot(lst, self.worst_allowed_per_iter, plot_title="Worst allowed")
+        # Plotter().line_plot(lst, self.avg_per_iter, plot_title="Average")
+        # Plotter().line_plot(lst, self.avg_allwowed_per_iter, plot_title="Average allowed")
         Plotter().multiline_plot(lst,
                                  self.best_allowed_per_iter,
                                  self.avg_allwowed_per_iter,
@@ -100,3 +101,9 @@ class EAlgorithm:
                                  y_axis_name="Rating",
                                  legend=["Best", "Average", "Worst"],
                                  plot_title="All ratings")
+        # x=[]
+        # y=[]
+        # for d in self.my_map.map:
+        #     x.append(d["x"])
+        #     y.append(d["y"])
+        # Plotter.scatter_plot(x, y, plot_title="Mapa")

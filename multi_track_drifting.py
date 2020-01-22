@@ -58,7 +58,6 @@ class MultiInstanceEAlgorithm:
             for maps_in in self.maps:
                 print("#")
                 configuration.values = config_it
-                print(maps_in.map)
                 ea = EAlgorithm(maps_in, set_specimens=self.set_specimen)
                 [best_ratings, routes, time] = ea.run_multiple_times(times=times)
                 best_ratings, routes = (list(t) for t in zip(*sorted(zip(best_ratings, routes))))

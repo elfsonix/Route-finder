@@ -59,8 +59,6 @@ class GUI:  # TODO całe GUI
             for elem in result.current_generation:
                 print("Specimen:", elem.route, "rating:", elem.rating, elem.is_allowed)
             print("BEST:", result.select_best_allowed_specimen().route, result.select_best_allowed_specimen().rating)
-        elif choice == "2":
-            pass
         elif choice == "R" or "r":
             self.main_menu()
         else:

@@ -14,8 +14,10 @@ class Plotter(abc.ABC):
     @staticmethod
     def scatter_plot(x_data, y_data, x_axis_name="OX", y_axis_name="OY", plot_title="Scatter Plot") -> None:
         fig, ax = plt.subplots()
+        plt.grid(True)
         ax.scatter(x_data, y_data)
         ax.set(xlabel=x_axis_name, ylabel=y_axis_name, title=plot_title)
+
         plt.show()
         return None
 
@@ -30,7 +32,9 @@ class Plotter(abc.ABC):
     @staticmethod
     def multiline_plot(x_data, y1_data, y2_data, y3_data, x_axis_name="OX", y_axis_name="OY", plot_title="Line Plot",
                        legend=["Dataset 1", "Dataset 2", "Dataset 3"]):
+
         fig, ax = plt.subplots()
+        plt.grid(True)
         plt1 = ax.plot(x_data, y1_data)
         plt2 = ax.plot(x_data, y2_data)
         plt3 = ax.plot(x_data, y3_data)
@@ -124,7 +128,7 @@ class Plotter(abc.ABC):
 
         ind = np.arange(len(data_high))
         fig, ax = plt.subplots()
-
+        plt.grid(True)
         plt1 = ax.bar(ind, data_high, width=0.5)
         plt2 = ax.bar(ind, data_avg, width=0.5)
         plt3 = ax.bar(ind, data_low, width=0.5)
@@ -132,7 +136,7 @@ class Plotter(abc.ABC):
         ax.set_ylabel(ylabel)
         ax.set_title(title)
         ax.set_xticks(ind)
-        ax.set(ylim=(0, 120))
+        ax.set(ylim=(0, 140))
         ax.set_xticklabels(xlabels)
         ax.legend((plt1[0], plt2[0], plt3[0]), (legend[0], legend[1], legend[2]))
 
